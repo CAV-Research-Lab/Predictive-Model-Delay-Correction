@@ -6,3 +6,20 @@
 To increase the performance of the adaptive PD controller, we develop a model-based reinforcement learning technique which efficiently incorporates multi-steps delays into the learning framework. Using the proposed technique the performance of the local-remote system is stabilised for stochastic communication time-delays up to 290ms. The results show that the proposed model-based reinforcement learning method outperforms Soft-Actor Critic and augmented state Soft-Actor Critic methods.
 
 # Setup
+`pip install -r ./requirements.txt`
+
+# Run
+`python delay_correcting_training.py`
+
+<!-- # Applying PMDC to delayed environments
+In order to apply PMDC you need to specify the ammount of delay to correct for e.g. 8 steps of action delay.
+`
+env = gym.make(env_id, seed=seed)
+env = UnseenRandomDelayWrapper(env, obs_delay_range=range(0, 1), act_delay_range=range(ACT_DELAY-1, ACT_DELAY)
+env = OLDUnDelayWrapper(), delay=OBS_DELAY+ACT_DELAY, env_id=env_id, pretrain=pretrain, n_models=n_models)
+
+
+` -->
+
+
+The implementation of the random delay wrapper was modified from Bouteiller et al. "[Reinforcement Learning with Random Delays](https://openreview.net/forum?id=QFYnKlBJYR)" - [Arxiv](https://arxiv.org/abs/2010.02966) - [GitHub](https://github.com/rmst/rlrd)

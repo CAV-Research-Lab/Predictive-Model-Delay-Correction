@@ -22,4 +22,4 @@ env = OLDUnDelayWrapper(), delay=OBS_DELAY+ACT_DELAY, env_id=env_id, pretrain=pr
 ` -->
 
 
-The implementation of the random delay wrapper was modified from Bouteiller et al. "[Reinforcement Learning with Random Delays](https://openreview.net/forum?id=QFYnKlBJYR)" - [Arxiv](https://arxiv.org/abs/2010.02966) - [GitHub](https://github.com/rmst/rlrd)
+The implementation of the random delay wrapper used to implement random action and observation delays was modified from Bouteiller et al. "[Reinforcement Learning with Random Delays](https://openreview.net/forum?id=QFYnKlBJYR)" - [Arxiv](https://arxiv.org/abs/2010.02966) - [GitHub](https://github.com/rmst/rlrd)

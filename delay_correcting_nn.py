@@ -1,8 +1,5 @@
 '''
-Splits the data into obs and obs_
-splits that into batches
-splits that into test_train_split
-
+The delay correcting neural network class used to learn the environment dynamics. This can also be pretrained using generated dataset.
 '''
 
 import torch
@@ -21,7 +18,6 @@ import gc
 import pickle
 import math
 
-#from local_remote_env import LEnv
 from sklearn.model_selection import train_test_split
 
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
@@ -38,9 +34,6 @@ class DCNN(nn.Module):
 
         self.layer_size = layer_size
         self.n_layers = n_layers
-
-        # self.fc1_dims = fc1_dims
-        # self.fc2_dims = fc2_dims
 
         self.learning_rate = torch.tensor(beta)
 
@@ -71,11 +64,6 @@ class DCNN(nn.Module):
         return self.fc4(x)
 
     def learn(self, obs, obs_): # obs includes action
-        # obs = np.array(obs).astype(np.float32)
-        # obs_ = np.array(obs_).astype(np.float32)
-
-        # obs = obs.reshape(128, 1, -1)
-        # obs_ = obs_.reshape(128, 1, -1)
 
         t_obs = torch.tensor(obs, requires_grad=True, dtype=torch.float32).to(self.device)
         t_obs_ = torch.tensor(obs_, requires_grad=True, dtype=torch.float32).to(self.device)
@@ -85,14 +73,11 @@ class DCNN(nn.Module):
 
         self.optimizer.zero_grad()
         loss = F.huber_loss(prediction, t_obs_)
-        # print(f"loss: {loss}, pred: {prediction}, actual: {obs_}")
-        # torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
 
         loss.backward()
         self.optimizer.step()
         
         self.scheduler.step()
-        # writer.add_scalar("Loss/train", loss, epoch)
 
         return loss.cpu().detach().item()
 
@@ -102,7 +87,6 @@ class DCNN(nn.Module):
 
         prediction = self.forward(t_obs)
         loss = F.mse_loss(prediction, t_obs_)
-        # print("Prediction:", prediction[0], "\n\nActual: ", t_obs_[0], "\n\nDifference: ", abs(prediction[0]-t_obs_[0]))
         return loss.cpu().detach().item()
 
 
@@ -119,23 +103,16 @@ def get_dataset(path):
     length = len(data[0])
     dataset = np.append(dataset, data)
     dataset = dataset.reshape(-1, length)
-    #print(f" - loaded {path} size: {len(dataset)/int(1e6)}M")
 
     return dataset
 
 
-# May have to fix this for HER in future
 def pre_processing(env_id, obs_space, act_space, delay=1, batch_size=128):
 
     for item in os.listdir(f"./dataset/{env_id}/"):
     
         dataset = get_dataset(f"./dataset/{env_id}/{item}")
                 
-        # print(act_space, obs_space, len(dataset))
-        #assert act_space + obs_space == len(dataset)
-
-        # We trim and then add a few because of delay but this wraps round so if that happens we take away a batch
-        # print(f"--- Loaded {item}: {len(dataset)/1000000}M samples")
         dataset = dataset[:(-(len(dataset) % batch_size) -batch_size + delay) ] # Trim for even batches (128 prevernts wrap arround)
         labels, _ = np.hsplit(dataset[delay:], [obs_space]) # Add delay and remove actions
         dataset = dataset[:-delay]
@@ -149,7 +126,6 @@ def pre_processing(env_id, obs_space, act_space, delay=1, batch_size=128):
         yield X_train, X_test, y_train, y_test
 
 def train(X_train,X_test, y_train, y_test, model, obs_space, act_space, batch_size=256, env_id=("manipulator", "bring_ball"), delay=8):
-	# print("before",len(X_train))
     losses = []
 
     for i in range(len(X_train)):
@@ -179,16 +155,13 @@ def plot(stats, plotdir, label=None):
         plt.plot(range(len(value)), value,label=label)
         plt.ylabel(key)
         plt.xlabel("training steps")
-        # plt.savefig(plotdir + key +".png")
+        plt.savefig(plotdir + key +".png")
 
 
 def run(env_id, epochs, batch_size, file_name):
     delay = 1
     PLOT_DIR = "./plots/"
 
-    #print(env_id)
-    # import sys
-    # sys.exit()
     env = gym.make(env_id)
     act_space = env.action_space.shape[0]
     obs_space = env.observation_space.shape[0]
@@ -224,8 +197,6 @@ def run(env_id, epochs, batch_size, file_name):
                 print(f"Finished Epoch {e} avg loss: {epoch_losses[-1]} avg test_loss: {np.mean(test_losses[-len(test_losses)//(e+1):])}")
 
             torch.save(model.state_dict(), file_name)
-            # plot({"loss":losses, "test loss":test_losses,"epoch loss": epoch_losses}, plotdir=PLOT_DIR, label=f"{n_layers}-{layer_size}")
-    # plt.savefig(PLOT_DIR + "key" +".png")
 
 if __name__== "__main__":
     env_id = "FetchPush-RemotePDNorm-v0"

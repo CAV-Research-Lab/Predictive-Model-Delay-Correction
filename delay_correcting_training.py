@@ -7,12 +7,7 @@ from stable_baselines3.common.callbacks import BaseCallback
 import random
 import sys
 import os
-'''
-# TODO:
-- Look at old pc code and see why that one seemed to work and this one doesnt
-Can use just the github version
 
-'''
 
 class TensorboardCallback(BaseCallback):
     """

@@ -23,14 +23,13 @@ env = OLDUnDelayWrapper(), delay=OBS_DELAY+ACT_DELAY, env_id=env_id, pretrain=pr
 
 In order to use PMDC on custom environments you can simply wrap the environment in the PMDC wrapper which will train and correct for constant action delays. In order to handle stochastic delays call the `Augmented` wrapper with given stochastic range.
 
-`
+```python
 import AugmentedRandomDelayWrapper, UnseenRandomDelayWrapper from wrappers_rd
 from PMDC_wrapper import PMDC
 
-env = PMDC( UnseenRandomDelayWrapper (gym.make(env_id),
-    obs_delay_range=range(0, 1),
-    act_delay_range=range(ACT_DELAY-1, ACT_DELAY)), delay=OBS_DELAY+ACT_DELAY, env_id=env_id, n_models=n_models)
-env = AugmentedRandomDelayWrapper(env, obs_delay_range=range(OBS_DELAY,OBS_DELAY+5), act_delay_range=range(0,1))
-`
+env = PMDC( UnseenRandomDelayWrapper (gym.make(env_id), act_delay_range=range(ACT_DELAY-1, ACT_DELAY)), delay=ACT_DELAY, env_id=env_id, n_models=n_models)
+env = AugmentedRandomDelayWrapper(env, obs_delay_range=range(OBS_DELAY,OBS_DELAY+DELAY_RANGE))
+```
+Where `ACT_DELAY`, `OBS_DELAY` and `DELAY_RANGE` adjust the degree of delay imposed on the environment.
 
 The implementation of the random delay wrapper used to implement random action and observation delays was modified from Bouteiller et al. "[Reinforcement Learning with Random Delays](https://openreview.net/forum?id=QFYnKlBJYR)" - [Arxiv](https://arxiv.org/abs/2010.02966) - [GitHub](https://github.com/rmst/rlrd)

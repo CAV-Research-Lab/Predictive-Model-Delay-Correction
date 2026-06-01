@@ -9,7 +9,8 @@ import torch.optim as optim
 from torch.optim import lr_scheduler
 # from torch.utils.tensorboard import SummaryWriter
 from torch.optim.lr_scheduler import LambdaLR
-import gym
+import gymnasium as gym
+import gymnasium_robotics  # noqa: F401
 import numpy as  np
 import matplotlib.pyplot as plt
 
@@ -48,7 +49,13 @@ class DCNN(nn.Module):
         else:
             self.scheduler = lr_scheduler.StepLR(self.optimizer, step_size=5_000, gamma=0.9, verbose=False) # 6.5 is roughly half 20 is /10
 
-        self.device = torch.device('cuda:3' if torch.cuda.is_available() else 'cpu')
+        device_name = os.environ.get("PMDC_TORCH_DEVICE")
+        if device_name:
+            self.device = torch.device(device_name)
+        elif torch.cuda.is_available():
+            self.device = torch.device("cuda")
+        else:
+            self.device = torch.device("cpu")
 
         self.to(self.device)
 

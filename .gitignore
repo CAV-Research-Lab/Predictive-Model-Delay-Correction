@@ -1,0 +1,46 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# --- PMDC generated artifacts (training output, regenerable) ---
+# Operator (local expert) training
+operator_logs/
+operator_models/
+
+# Remote-agent training: TensorBoard logs (authoritative), sparse CSVs, policy zips
+pred_logs/
+pred_results/
+pred_results_old/
+pred_rl_models/
+
+# Persisted PMDC ensemble world models (PMDC.save_models, see CLAUDE.md Pitfall E)
+models/
+
+# Per-experiment run trees: fetch_delay_runs/ and the per-env runs_<EnvName>/ (Pitfall K)
+fetch_delay_runs/
+runs_*/
+
+# --- Generated plots (derived from logged data only, see CLAUDE.md Pitfall F) ---
+*.png
+
+# --- Experiment trackers ---
+wandb/
+
+# --- OS / editor cruft ---
+.DS_Store
+.vscode/
+.idea/
+*.swp

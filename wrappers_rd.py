@@ -2,8 +2,8 @@ from collections import deque
 from random import sample
 import itertools
 
-import gym
-from gym.spaces import Tuple, Discrete
+import gymnasium as gym
+from gymnasium.spaces import Tuple, Discrete, Box
 
 import numpy as np
 
@@ -11,7 +11,7 @@ import numpy as np
 class RandomDelayWrapper(gym.Wrapper):
     """
     Wrapper for any non-RTRL environment, modelling random observation and action delays
-    NB: alpha refers to the abservation delay, it is >= 0
+    NB: alpha refers to the observation delay, it is >= 0
     NB: The state-space now contains two different action delays:
         kappa is such that alpha+kappa is the index of the first action that was going to be applied when the observation started being captured, it is useful for the model
             (when kappa==0, it means that the delay is actually 1)
@@ -23,79 +23,87 @@ class RandomDelayWrapper(gym.Wrapper):
         initial_action: action (default None): action with which the action buffer is filled at reset() (if None, sampled in the action space)
     """
 
-    def __init__(self, env, obs_delay_range=range(0, 1), act_delay_range=range(0, 1), initial_action=None, skip_initial_actions=False):
+    def __init__(
+        self,
+        env,
+        obs_delay_range=range(0, 1),
+        act_delay_range=range(0, 1),
+        initial_action=None,
+        skip_initial_actions=False,
+        obs_buffer_len=None,
+        act_buffer_len=None,
+    ):
         super().__init__(env)
         self.wrapped_env = env
         self.obs_delay_range = obs_delay_range
         self.act_delay_range = act_delay_range
+        self.obs_buffer_len = obs_delay_range.stop if obs_buffer_len is None else obs_buffer_len
+        self.act_buffer_len = act_delay_range.stop if act_buffer_len is None else act_buffer_len
+        if self.obs_buffer_len <= max(obs_delay_range):
+            raise ValueError("obs_buffer_len must be larger than the largest observation delay")
+        if self.act_buffer_len <= max(act_delay_range):
+            raise ValueError("act_buffer_len must be larger than the largest action delay")
 
         self.observation_space = Tuple((
             env.observation_space,  # most recent observation
-            Tuple([env.action_space] * (obs_delay_range.stop + act_delay_range.stop - 1)),  # action buffer
-            Discrete(obs_delay_range.stop),  # observation delay int64
-            Discrete(act_delay_range.stop),  # action delay int64
+            Tuple([env.action_space] * self.action_history_len),  # action buffer
+            Discrete(self.obs_buffer_len),  # observation delay int64
+            Discrete(self.act_buffer_len),  # action delay int64
         ))
 
         self.initial_action = initial_action
         self.skip_initial_actions = skip_initial_actions
-        self.past_actions = deque(maxlen=obs_delay_range.stop + act_delay_range.stop)
-        self.past_observations = deque(maxlen=obs_delay_range.stop)
-        self.arrival_times_actions = deque(maxlen=act_delay_range.stop)
-        self.arrival_times_observations = deque(maxlen=obs_delay_range.stop)
+        self.past_actions = deque(maxlen=self.obs_buffer_len + self.act_buffer_len)
+        self.past_observations = deque(maxlen=self.obs_buffer_len)
+        self.arrival_times_actions = deque(maxlen=self.act_buffer_len)
+        self.arrival_times_observations = deque(maxlen=self.obs_buffer_len)
 
         self.t = 0
         self.done_signal_sent = False
         self.next_action = None
         self.cum_rew_actor = 0.
         self.cum_rew_brain = 0.
-        self.prev_action_idx = 0  # TODO : initialize this better
+        self.prev_action_idx = 0
+
+    @property
+    def action_history_len(self):
+        return self.obs_buffer_len + self.act_buffer_len - 1
 
     def reset(self, **kwargs):
         self.cum_rew_actor = 0.
         self.cum_rew_brain = 0.
-        self.prev_action_idx = 0  # TODO : initialize this better
+        self.prev_action_idx = 0
         self.done_signal_sent = False
-        first_observation = super().reset(**kwargs)
+        first_observation, reset_info = self.env.reset(**kwargs)
 
         # fill up buffers
-        self.t = - (self.obs_delay_range.stop + self.act_delay_range.stop)  # this is <= -2
+        self.t = - (self.obs_buffer_len + self.act_buffer_len)
         while self.t < 0:
             act = self.action_space.sample() if self.initial_action is None else self.initial_action
-            self.send_action(act, init=True)  # TODO : initialize this better
-            self.send_observation((first_observation, 0., False, {}, 0, 1))  # TODO : initialize this better
+            self.send_action(act, init=True)
+            self.send_observation((first_observation, 0., False, {}, 0, 1))
             self.t += 1
         self.receive_action()  # an action has to be applied
 
         assert self.t == 0
         received_observation, *_ = self.receive_observation()
-        # print("DEBUG: end of reset ---")
-        # print(f"DEBUG: self.past_actions:{self.past_actions}")
-        # print(f"DEBUG: self.past_observations:{self.past_observations}")
-        # print(f"DEBUG: self.arrival_times_actions:{self.arrival_times_actions}")
-        # print(f"DEBUG: self.arrival_times_observations:{self.arrival_times_observations}")
-        # print(f"DEBUG: self.t:{self.t}")
-        # print("DEBUG: ---")
-        return received_observation
+        return received_observation, {}
 
     def step(self, action):
         """
         When kappa is 0 and alpha is 0, this is equivalent to the RTRL setting
-        (The inference time is NOT considered part of beta or kappa)
         """
-
         # at the brain
         self.send_action(action)
 
         # at the remote actor
         if self.t < self.act_delay_range.stop and self.skip_initial_actions:
-            # assert False, "skip_initial_actions==True is not supported"
-            # do nothing until the brain's first actions arrive at the remote actor
             self.receive_action()
         elif self.done_signal_sent:
-            # just resend the last observation until the brain gets it
             self.send_observation(self.past_observations[0])
         else:
-            m, r, d, info = self.env.step(self.next_action)  # before receive_action (e.g. rtrl setting with 0 delays)
+            m, r, terminated, truncated, info = self.env.step(self.next_action)
+            d = terminated or truncated
             kappa, beta = self.receive_action()
             self.cum_rew_actor += r
             self.done_signal_sent = d
@@ -107,68 +115,26 @@ class RandomDelayWrapper(gym.Wrapper):
         self.cum_rew_brain = cum_rew_actor_delayed
 
         self.t += 1
-
-        # print("DEBUG: end of step ---")
-        # print(f"DEBUG: self.past_actions:{self.past_actions}")
-        # print(f"DEBUG: self.past_observations:{self.past_observations}")
-        # print(f"DEBUG: self.arrival_times_actions:{self.arrival_times_actions}")
-        # print(f"DEBUG: self.arrival_times_observations:{self.arrival_times_observations}")
-        # print(f"DEBUG: self.t:{self.t}")
-        # print("DEBUG: ---")
-        return m, r, d, info
+        return m, r, d, False, info
 
     def send_action(self, action, init=False):
-        """
-        Appends action to the left of self.past_actions
-        Simulates the time at which it will reach the agent and stores it on the left of self.arrival_times_actions
-        """
-        # at the brain
-        kappa, = sample(self.act_delay_range, 1) if not init else [0, ]  # TODO: change this if we implement a different initialization
+        kappa, = sample(self.act_delay_range, 1) if not init else [0, ]
         self.arrival_times_actions.appendleft(self.t + kappa)
         self.past_actions.appendleft(action)
 
     def receive_action(self):
-        """
-        Looks for the last created action that has arrived before t at the agent
-        NB: since it is the most recently created action that the agent got, this is the one that is to be applied
-        Returns:
-            next_action_idx: int: the index of the action that is going to be applied
-            prev_action_idx: int: the index of the action previously being applied (i.e. of the action that influenced the observation since it is retrieved instantaneously in usual Gym envs)
-        """
-        # CAUTION: from the brain point of view, the "previous action"'s age (kappa_t) is not like the previous "next action"'s age (beta_{t-1}) (e.g. repeated observations)
-        prev_action_idx = self.prev_action_idx + 1  # + 1 is to account for the fact that this was the right idx 1 time-step before
+        prev_action_idx = self.prev_action_idx + 1
         next_action_idx = next(i for i, t in enumerate(self.arrival_times_actions) if t <= self.t)
         self.prev_action_idx = next_action_idx
         self.next_action = self.past_actions[next_action_idx]
-        # print(f"DEBUG: next_action_idx:{next_action_idx}, prev_action_idx:{prev_action_idx}")
         return next_action_idx, prev_action_idx
 
     def send_observation(self, obs):
-        """
-        Appends obs to the left of self.past_observations
-        Simulates the time at which it will reach the brain and appends it in self.arrival_times_observations
-        """
-        # at the remote actor
         alpha, = sample(self.obs_delay_range, 1)
         self.arrival_times_observations.appendleft(self.t + alpha)
         self.past_observations.appendleft(obs)
 
     def receive_observation(self):
-        """
-        Looks for the last created observation at the agent/observer that reached the brain at time t
-        NB: since this is the most recently created observation that the brain got, this is the one currently being considered as the last observation
-        Returns:
-            augmented_obs: tuple:
-                m: object: last observation that reached the brain
-                past_actions: tuple: the history of actions that the brain sent so far
-                alpha: int: number of micro time steps it took the last observation to travel from the agent/observer to the brain
-                kappa: int: action travel delay + number of micro time-steps for which the next action has been applied at the agent
-                beta: int: action travel delay + number of micro time-steps for which the previous action has been applied at the agent
-            r: float: delayed reward corresponding to the transition that created m
-            d: bool: delayed done corresponding to the transition that created m
-            info: dict: delayed info corresponding to the transition that created m
-        """
-        # at the brain
         alpha = next(i for i, t in enumerate(self.arrival_times_observations) if t <= self.t)
         m, r, d, info, kappa, beta = self.past_observations[alpha]
         return (m, tuple(itertools.islice(self.past_actions, 0, self.past_actions.maxlen - 1)), alpha, kappa, beta), r, d, info
@@ -176,8 +142,8 @@ class RandomDelayWrapper(gym.Wrapper):
 
 class UnseenRandomDelayWrapper(RandomDelayWrapper):
     """
-    Wrapper that translates the RandomDelayWrapper back to the usual RL setting
-    Use this wrapper to see what happens to vanilla RL algorithms facing random delays
+    Wrapper that translates the RandomDelayWrapper back to the usual RL setting.
+    Use this wrapper to see what happens to vanilla RL algorithms facing random delays.
     """
 
     def __init__(self, env, **kwargs):
@@ -185,40 +151,81 @@ class UnseenRandomDelayWrapper(RandomDelayWrapper):
         self.observation_space = env.observation_space
 
     def reset(self, **kwargs):
-        t = super().reset(**kwargs)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
-        return t[0]
+        t, info = super().reset(**kwargs)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
+        return t[0], info
 
     def step(self, action):
         t, *aux = super().step(action)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
         return (t[0], *aux)
 
-## My own only augmented state wrapper
-from gym.spaces import Dict, Box, Tuple
 
 class AugmentedRandomDelayWrapper(RandomDelayWrapper):
     """
-    Wrapper that translates the RandomDelayWrapper back to the usual RL setting
-    Use this wrapper to see what happens to augmented observation state RL algorithms facing random delays
+    Wrapper that augments the observation with the action history to account for delays.
     """
-    # Fix for HER
-    def __init__(self, env, delay_v, **kwargs):
+
+    def __init__(self, env, delay_v=None, **kwargs):
         super().__init__(env, **kwargs)
-        # self.delay = sum([sum(list(x)) for x in kwargs.values()])
-        # self.new_obs_shape = env.observation_space.shape[0] + (env.action_space.shape[0] * ( sum([sum(list(x)) for x in kwargs.values()]) + 1)) 
-        self.observation_space = Box(low=-np.inf, high=np.inf, shape=(8+delay_v,), dtype=np.float32)
+        self.flat_observation_dim = env.observation_space.shape[0]
+        self.action_buffer_dim = env.action_space.shape[0] * self.action_history_len
+        if delay_v is not None:
+            # Backward compatible with the original caller's 8 + delay_v shape convention.
+            expected_dim = 8 + delay_v
+            computed_dim = self.flat_observation_dim + self.action_buffer_dim
+            if expected_dim != computed_dim:
+                raise ValueError(
+                    f"delay_v gives observation dim {expected_dim}, but the configured delay buffers "
+                    f"require {computed_dim}"
+                )
+        self.observation_space = Box(
+            low=-np.inf,
+            high=np.inf,
+            shape=(self.flat_observation_dim + self.action_buffer_dim,),
+            dtype=np.float32,
+        )
 
     def reset(self, **kwargs):
-        t = super().reset(**kwargs)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
-        aug_state = np.append(t[0], t[1]) # Combine action buffer and state
+        t, info = super().reset(**kwargs)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
+        aug_state = np.append(t[0], t[1])
+        return aug_state, info
 
-        return aug_state
-
-    # Make this more efficient
     def step(self, action):
         t, *aux = super().step(action)  # t: (m, tuple(self.past_actions), alpha, kappa, beta)
-        aug_state = np.append(t[0], t[1]) # Combine action buffer and state
+        aug_state = np.append(t[0], t[1])
         return (aug_state, *aux)
-##
+
+
+class AugmentedDelayInfoWrapper(AugmentedRandomDelayWrapper):
+    """
+    Augments observations with action history and the sampled delay values.
+
+    The appended delay values are alpha, kappa, and beta from RandomDelayWrapper:
+    observation delay, current action delay index, and previous action influence index.
+    """
+
+    def __init__(self, env, **kwargs):
+        super().__init__(env, **kwargs)
+        dim = self.observation_space.shape[0] + 3
+        self.observation_space = Box(low=-np.inf, high=np.inf, shape=(dim,), dtype=np.float32)
+
+    def _augment(self, t):
+        obs, actions, alpha, kappa, beta = t
+        delay_values = np.asarray([alpha, kappa, beta], dtype=np.float32)
+        return np.concatenate(
+            [
+                np.asarray(obs, dtype=np.float32).reshape(-1),
+                np.asarray(actions, dtype=np.float32).reshape(-1),
+                delay_values,
+            ]
+        )
+
+    def reset(self, **kwargs):
+        t, info = RandomDelayWrapper.reset(self, **kwargs)
+        return self._augment(t), info
+
+    def step(self, action):
+        t, *aux = RandomDelayWrapper.step(self, action)
+        return (self._augment(t), *aux)
 
 
 def simple_wifi_sampler1():
@@ -230,46 +237,30 @@ def simple_wifi_sampler2():
 
 
 class WifiDelayWrapper1(RandomDelayWrapper):
-    """
-    Simple sampler built from a dataset of 10000 real-world wifi communications
-    The atomic time-step is 0.02s
-    All communication times above 0.1s have been clipped to 0.1s
-    """
-
     def __init__(self, env, initial_action=None, skip_initial_actions=False):
         super().__init__(env, obs_delay_range=range(0, 7), act_delay_range=range(0, 7), initial_action=initial_action, skip_initial_actions=skip_initial_actions)
 
     def send_observation(self, obs):
-        # at the remote actor
         alpha = simple_wifi_sampler1()
         self.arrival_times_observations.appendleft(self.t + alpha)
         self.past_observations.appendleft(obs)
 
     def send_action(self, action, init=False):
-        # at the brain
-        kappa = simple_wifi_sampler1() if not init else 0  # TODO: change this if we implement a different initialization
+        kappa = simple_wifi_sampler1() if not init else 0
         self.arrival_times_actions.appendleft(self.t + kappa)
         self.past_actions.appendleft(action)
 
 
 class WifiDelayWrapper2(RandomDelayWrapper):
-    """
-    Simple sampler built from a dataset of 10000 real-world wifi communications
-    The atomic time-step is 0.02s
-    All communication times above 0.1s have been clipped to 0.1s
-    """
-
     def __init__(self, env, initial_action=None, skip_initial_actions=False):
         super().__init__(env, obs_delay_range=range(0, 5), act_delay_range=range(0, 5), initial_action=initial_action, skip_initial_actions=skip_initial_actions)
 
     def send_observation(self, obs):
-        # at the remote actor
         alpha = simple_wifi_sampler2()
         self.arrival_times_observations.appendleft(self.t + alpha)
         self.past_observations.appendleft(obs)
 
     def send_action(self, action, init=False):
-        # at the brain
-        kappa = simple_wifi_sampler2() if not init else 0  # TODO: change this if we implement a different initialization
+        kappa = simple_wifi_sampler2() if not init else 0
         self.arrival_times_actions.appendleft(self.t + kappa)
         self.past_actions.appendleft(action)

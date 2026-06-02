@@ -44,6 +44,24 @@ def add_wandb_args(cmd, args):
     add_if_value(cmd, "--wandb-run-name-prefix", args.wandb_run_name_prefix)
 
 
+def require_wandb_available():
+    result = subprocess.run(
+        [sys.executable, "-c", "import wandb"],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
+    if result.returncode != 0:
+        raise SystemExit(
+            "error: --wandb was requested, but wandb is not installed in this interpreter.\n"
+            "Install/login before launching the long run:\n"
+            "  uv --cache-dir /tmp/uv-cache pip install --python .venv/bin/python wandb\n"
+            "  .venv/bin/wandb login\n"
+            f"\nPython stderr:\n{result.stderr.strip()}"
+        )
+
+
 def matrix_args(args):
     cmd = []
     add_list(cmd, "--experiments", args.experiments)
@@ -103,6 +121,8 @@ def fetch_args(args, output_dir, results_csv, shard_count=None, shard_index=None
     if args.eval_only:
         cmd.append("--eval-only")
     add_wandb_args(cmd, args)
+    if args.wandb and not args.wandb_model_artifacts:
+        cmd.append("--no-wandb-model-artifacts")
     return cmd
 
 
@@ -148,6 +168,7 @@ def build_parser():
     parser.add_argument("--wandb-group", default=None)
     parser.add_argument("--wandb-run-name-prefix", default=None)
     parser.add_argument("--wandb-mode", choices=["online", "offline", "disabled"], default="online")
+    parser.add_argument("--wandb-model-artifacts", action=argparse.BooleanOptionalAction, default=True)
 
     parser.add_argument("--experiments", nargs="+", choices=EXPERIMENTS, default=list(EXPERIMENTS))
     parser.add_argument("--variants", nargs="+", choices=VARIANTS.keys(), default=list(VARIANTS.keys()))
@@ -184,6 +205,8 @@ def main():
         and (args.run_shards_locally or args.shard_count > 1)
     ):
         raise SystemExit("error: omit --manifest when training shards so each shard can write its own manifest")
+    if args.wandb:
+        require_wandb_available()
     if not args.skip_smoke:
         run([sys.executable, "smoke_fetch_delay_pipeline.py"])
 

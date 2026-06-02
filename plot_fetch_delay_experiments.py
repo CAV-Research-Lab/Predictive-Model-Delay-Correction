@@ -344,7 +344,7 @@ def log_plots_to_wandb(args, df, outputs, summary_csv):
         },
         resume="allow",
         mode=args.wandb_mode,
-        reinit=True,
+        reinit="finish_previous",
     )
 
     payload = {

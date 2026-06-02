@@ -195,9 +195,11 @@ uv --cache-dir /tmp/uv-cache pip install --python .venv/bin/python wandb
 ```
 
 The pipeline logs directly. `fetch_delay_experiments.py`
-opens one W&B evaluation run per completed train/eval/seed job, and
+opens one W&B model-checkpoint run per trained model, one W&B evaluation run
+per completed train/eval/seed job, and
 `plot_fetch_delay_experiments.py` opens one aggregate plot run containing:
 
+- model artifacts containing `model.zip` and `metadata.json`;
 - `plots/delay_length_impact`
 - `plots/state_information`
 - `plots/delay_structure_generalization`
@@ -205,6 +207,11 @@ opens one W&B evaluation run per completed train/eval/seed job, and
 
 Run names are informative, for example
 `FetchPush-RemotePDNorm-v0 delay 80000 steps | FetchPush seed0 unseen stochastic_sweep/stochastic_observation_upper train=(0,0-20) eval=(0,0-20)`.
+Each successful W&B upload writes a small marker under the corresponding
+`fetch_delay_runs/models/.../wandb/` directory. If a run produced local
+checkpoints/evaluation rows before W&B was installed, rerunning after installing
+W&B will skip the completed training/evaluation work but backfill any missing
+W&B model artifacts and evaluation runs that do not have markers yet.
 
 The preferred route is to let the orchestrator pass the direct W&B settings to
 training/evaluation and plotting:

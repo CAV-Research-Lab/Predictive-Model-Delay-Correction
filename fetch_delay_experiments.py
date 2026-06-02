@@ -18,6 +18,7 @@ import random
 import warnings
 from dataclasses import dataclass
 from pathlib import Path
+import time
 
 os.environ.setdefault("MPLCONFIGDIR", "/tmp/matplotlib")
 Path(os.environ["MPLCONFIGDIR"]).mkdir(parents=True, exist_ok=True)
@@ -232,6 +233,23 @@ def wandb_eval_run_id(args, spec, eval_spec, seed, model_path):
     return f"fetch-delay-eval-{hashlib.sha1(raw.encode('utf-8')).hexdigest()[:16]}"
 
 
+def wandb_model_run_id(args, spec, seed, model_path):
+    raw = "|".join(
+        str(part)
+        for part in (
+            args.env_id,
+            args.steps,
+            seed,
+            spec.variant,
+            spec.train_setting.name,
+            spec.act_buffer_len,
+            spec.obs_buffer_len,
+            model_path,
+        )
+    )
+    return f"fetch-delay-model-{hashlib.sha1(raw.encode('utf-8')).hexdigest()[:16]}"
+
+
 def wandb_eval_run_name(args, spec, eval_spec, seed):
     name = (
         f"{short_env(args.env_id)} seed{seed} {spec.variant} "
@@ -239,6 +257,43 @@ def wandb_eval_run_name(args, spec, eval_spec, seed):
         f"train={spec.train_setting.display} eval={eval_spec.setting.display}"
     )
     return f"{args.wandb_run_name_prefix} | {name}" if args.wandb_run_name_prefix else name
+
+
+def wandb_model_run_name(args, spec, seed):
+    name = (
+        f"{short_env(args.env_id)} seed{seed} {spec.variant} "
+        f"checkpoint train={spec.train_setting.display}"
+    )
+    return f"{args.wandb_run_name_prefix} | {name}" if args.wandb_run_name_prefix else name
+
+
+def wandb_marker_dir(output_dir, env_id, seed, spec):
+    return model_dir_for(output_dir, env_id, seed, spec) / "wandb"
+
+
+def wandb_eval_marker_path(args, spec, eval_spec, seed, model_path):
+    run_id = wandb_eval_run_id(args, spec, eval_spec, seed, model_path)
+    return wandb_marker_dir(args.output_dir, args.env_id, seed, spec) / f"{run_id}.json"
+
+
+def wandb_model_marker_path(args, spec, seed, model_path):
+    run_id = wandb_model_run_id(args, spec, seed, model_path)
+    return wandb_marker_dir(args.output_dir, args.env_id, seed, spec) / f"{run_id}.json"
+
+
+def write_wandb_marker(path, payload, args):
+    if args.wandb_mode == "disabled":
+        return
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        **payload,
+        "project": args.wandb_project,
+        "entity": args.wandb_entity,
+        "mode": args.wandb_mode,
+        "logged_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
+    }
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
 def summarize_eval_rows(rows):
@@ -266,8 +321,14 @@ def log_eval_rows_to_wandb(args, spec, eval_spec, seed, model_path, rows):
     if not args.wandb or not rows:
         return
 
+    marker_path = wandb_eval_marker_path(args, spec, eval_spec, seed, model_path)
+    if marker_path.exists():
+        print(f"[wandb eval skip] {marker_path}")
+        return
+
     wandb = import_wandb()
     run_name = wandb_eval_run_name(args, spec, eval_spec, seed)
+    run_id = wandb_eval_run_id(args, spec, eval_spec, seed, model_path)
     config = {
         "env_id": args.env_id,
         "seed": seed,
@@ -295,12 +356,12 @@ def log_eval_rows_to_wandb(args, spec, eval_spec, seed, model_path, rows):
         entity=args.wandb_entity,
         group=args.wandb_group or default_wandb_group(args),
         job_type="evaluation",
-        id=wandb_eval_run_id(args, spec, eval_spec, seed, model_path),
+        id=run_id,
         name=run_name,
         config=config,
         resume="allow",
         mode=args.wandb_mode,
-        reinit=True,
+        reinit="finish_previous",
     )
     run.define_metric("episode")
     run.define_metric("eval/*", step_metric="episode")
@@ -317,6 +378,81 @@ def log_eval_rows_to_wandb(args, spec, eval_spec, seed, model_path, rows):
         run.summary[key] = value
     run.summary["run_name"] = run_name
     run.finish()
+    write_wandb_marker(
+        marker_path,
+        {"kind": "evaluation", "run_id": run_id, "run_name": run_name, "episode_count": len(rows)},
+        args,
+    )
+
+
+def log_model_checkpoint_to_wandb(args, spec, seed, model_path, metadata_path):
+    if not args.wandb or not args.wandb_model_artifacts:
+        return
+    model_path = Path(model_path)
+    metadata_path = Path(metadata_path)
+    if not model_path.exists():
+        return
+
+    marker_path = wandb_model_marker_path(args, spec, seed, model_path)
+    if marker_path.exists():
+        print(f"[wandb model skip] {marker_path}")
+        return
+
+    wandb = import_wandb()
+    run_id = wandb_model_run_id(args, spec, seed, model_path)
+    run_name = wandb_model_run_name(args, spec, seed)
+    artifact_name = sanitize(f"{args.env_id}__{spec.train_id}__seed_{seed}")[:128]
+    metadata = {
+        "env_id": args.env_id,
+        "seed": seed,
+        "steps": args.steps,
+        "variant": spec.variant,
+        "variant_label": VARIANTS[spec.variant],
+        "train_delay": spec.train_setting.display,
+        "train_delay_name": spec.train_setting.name,
+        "act_buffer_len": spec.act_buffer_len,
+        "obs_buffer_len": spec.obs_buffer_len,
+        "model_path": str(model_path),
+    }
+    run = wandb.init(
+        project=args.wandb_project,
+        entity=args.wandb_entity,
+        group=args.wandb_group or default_wandb_group(args),
+        job_type="model-checkpoint",
+        id=run_id,
+        name=run_name,
+        config=metadata,
+        resume="allow",
+        mode=args.wandb_mode,
+        reinit="finish_previous",
+    )
+    artifact = wandb.Artifact(
+        name=artifact_name,
+        type="model",
+        description="Final SAC policy checkpoint for a Fetch delay training job.",
+        metadata=metadata,
+    )
+    artifact.add_file(str(model_path), name="model.zip")
+    if metadata_path.exists():
+        artifact.add_file(str(metadata_path), name="metadata.json")
+    run.log_artifact(
+        artifact,
+        aliases=[
+            "latest",
+            f"seed-{seed}",
+            sanitize(spec.variant),
+            sanitize(spec.train_setting.name),
+        ],
+    )
+    run.summary["model_path"] = str(model_path)
+    run.summary["artifact_name"] = artifact_name
+    run.summary["run_name"] = run_name
+    run.finish()
+    write_wandb_marker(
+        marker_path,
+        {"kind": "model", "run_id": run_id, "run_name": run_name, "artifact_name": artifact_name},
+        args,
+    )
 
 
 def constant_delay(act_delay, obs_delay):
@@ -568,6 +704,7 @@ def train_model(args, spec, seed):
     metadata_path = model_dir / "metadata.json"
     if model_path.exists() and not args.force_train:
         print(f"[train skip] {spec.train_id} seed={seed}")
+        log_model_checkpoint_to_wandb(args, spec, seed, model_path, metadata_path)
         return model_path
 
     print(
@@ -616,6 +753,7 @@ def train_model(args, spec, seed):
             indent=2,
         )
     )
+    log_model_checkpoint_to_wandb(args, spec, seed, model_path, metadata_path)
     return model_path
 
 
@@ -717,6 +855,7 @@ def evaluate_model(args, spec, eval_spec, seed, model_path):
     missing_episodes = [episode for episode in range(args.n_eval_episodes) if episode not in completed_episodes]
     if not missing_episodes:
         print(f"[eval skip] {spec.train_id} -> {eval_spec.setting.display} seed={seed}")
+        log_eval_rows_to_wandb(args, spec, eval_spec, seed, model_path, previous)
         return
 
     if not Path(model_path).exists():
@@ -890,6 +1029,7 @@ def build_parser():
     parser.add_argument("--wandb-group", default=None)
     parser.add_argument("--wandb-run-name-prefix", default=None)
     parser.add_argument("--wandb-mode", choices=["online", "offline", "disabled"], default="online")
+    parser.add_argument("--wandb-model-artifacts", action=argparse.BooleanOptionalAction, default=True)
 
     parser.add_argument("--constant-delays", nargs="+", type=int, default=[0, 5, 10, 15, 20])
     parser.add_argument("--stochastic-obs-uppers", nargs="+", type=int, default=[5, 10, 15, 20])
@@ -906,6 +1046,8 @@ def build_parser():
 
 def main():
     args = build_parser().parse_args()
+    if args.wandb and not args.dry_run:
+        import_wandb()
     all_specs = build_run_specs(args)
     try:
         specs = filter_specs_for_shard(all_specs, args.shard_index, args.shard_count)

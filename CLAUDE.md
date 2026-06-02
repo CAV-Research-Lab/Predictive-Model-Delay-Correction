@@ -334,3 +334,77 @@ converging means its Q-function is consistent *in the predicted state space* —
 nothing about whether the predictions match reality. On hard-to-model dynamics or with an
 erratic operator over a long horizon, PMDC can underperform plain SAC. Always sanity-check the
 actual `track/step_reward`, not just the critic loss.
+
+---
+
+## 9. Strong operator training (FetchPush 95%, FetchSlide 67% / 80% peak)
+
+The weak ~7% FetchPush operator in §5 (50k steps, sparse) inflated tracking variance and is
+why SAC ≈ A-SAC at long delay there. For cleaner Chapter results, and to extend PMDC to a
+harder base task (FetchSlide), we trained **strong** operators. `train_operator.py` was
+upgraded for this; the recipe below is what worked.
+
+### What changed in `train_operator.py`
+- **Train on the Dense reward variant + HER; eval on the sparse counterpart.** `--env-id
+  FetchSlideDense-v2` trains on the continuous −distance signal; the script auto-evals on
+  `FetchSlide-v2` (sparse) so "best mean reward" == "best success". This was **decisive**:
+  sparse-only caps ~4% on Slide; dense+HER breaks through. (`eval_env_id =
+  env_id.replace("Dense", "")`.)
+- **`--target-entropy` exposed (the key knob).** SAC's auto target is −dim(A) = −4. We raise
+  it to **−2.0** to fight entropy collapse: with the default, the auto `ent_coef` crashes
+  ~0.03 → 0.0004 by ~100k and starves exploration.
+- Bigger net **`--net-arch 512 512 512`**, gamma 0.95, buffer 1e6, batch 256, lr 3e-4.
+- **Optimiser = Adam** (the SB3 default). AdamW is available via `--optimizer adamw
+  --weight-decay <w>` but we did **not** use it; the lever here was entropy, not regularisation.
+- EvalCallback saves the **best-by-reward** checkpoint to `<output>_run/best/best_model.zip`
+  and the script copies it over `--output` at the end. CheckpointCallback every 100k for crash
+  safety. `--wandb` logs to project `pmdc-fetch-operators` (`sync_tensorboard=True`).
+
+### FetchPush-v2 operator — 86% (100-ep) / 95% peak (done)
+```bash
+python3 train_operator.py --env-id FetchPushDense-v2 --steps 1000000 --seed 0 --device cuda \
+  --gamma 0.95 --net-arch 256 256 \
+  --output operator_models/FetchPush-v2_SAC_seed0.zip
+```
+The canonical Push operator is the **default 256² net** (the `.zip` is ~3.4 MB, vs ~24 MB for
+the 512³ Slide net), dense+HER. Push is easy: it reaches **86.0% over 100 deterministic
+episodes** (mean reward −16.8), peak 95% on a 20-ep eval, and converges well before 500k, so
+the larger net / entropy tuning needed for Slide is unnecessary here. `working_models.json`
+already points at it. Re-running the §3 delay experiments with this operator (vs the old ~7%
+expert) should sharpen the SAC-worst ordering that the weak operator blurred.
+
+### FetchSlide-v2 operator — 67% (100-ep) / 80% peak (done; near SAC+HER ceiling)
+Winning config:
+```bash
+python3 train_operator.py --env-id FetchSlideDense-v2 --steps 1500000 --seed 0 --device cuda \
+  --gamma 0.95 --net-arch 512 512 512 --target-entropy -2.0 --buffer-size 1000000 \
+  --wandb --wandb-project pmdc-fetch-operators \
+  --output operator_models/FetchSlide-v2_SAC_seed0_capent.zip
+```
+**Result: 67.0% success over 100 deterministic episodes** (canonical
+`operator_models/FetchSlide-v2_SAC_seed0.zip`, mean reward −29.0); peak **80%** on a single
+20-ep eval. Best-success trajectory: 0% (<150k) → 45% @236k → 70% @417k → 80% @600k → plateau.
+The earlier weak run (net 256², auto entropy) needed ~900k just to reach 60%; this config hit
+the same 45% in under half the steps and beat the old peak.
+
+Four findings worth keeping:
+1. **Entropy collapse is the lever, not capacity.** On the stuck-at-60% run the critic loss
+   was already low (0.02–0.07), so it was an exploration failure, not a value-fitting one.
+   Raising `target_entropy` −4 → −2 unlocked the climb. The `ent_coef` *value* still reads tiny
+   (~0.0007) but `ent_coef_loss ≈ 0` means policy entropy is *held at the higher target*; the
+   coefficient is just the Lagrange multiplier finding its level. Read the loss, not the value.
+2. **Promote `best_model.zip`, never the final checkpoint.** The policy **degraded late**: the
+   900k checkpoint scores **26%** over 100 ep vs **67%** for the best-by-reward (~783k)
+   checkpoint. Finalise rule we used: stop when `best_model.zip` stops updating for a full
+   monitoring cycle (reward plateau). The 900k=26% confirms continuing would only have hurt.
+3. **20-ep eval noise is huge (±~20% at n=20).** The "best success" tracker shows 80% while
+   the robust rate is 67%. Always confirm a promoted operator with 100 episodes:
+   `python3 /tmp/eval_operator.py <zip> FetchSlide-v2 100`. **Gotcha:** SAC models trained with
+   HER must be loaded as `SAC.load(path, env=env)` (asserts otherwise).
+4. **~67% is near the practical SAC+HER ceiling for FetchSlide** (frictional puck must stop
+   within threshold without overshoot). A robust 80% likely needs a different recipe (reward
+   shaping / multi-seed / longer-horizon exploration), not more of the same run.
+
+Artifacts: `FetchSlide-v2_SAC_seed0.zip` (canonical = 67% best), `_capent_best80.zip` (copy of
+same), `_dense60pct.zip` / `_dense29pct.zip` (earlier fallbacks), `_capent_run/`
+(best/ + checkpoints/ every 100k + tb/). W&B run under `cavlab/pmdc-fetch-operators`.

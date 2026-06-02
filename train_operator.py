@@ -42,6 +42,12 @@ def main():
     p.add_argument("--gamma", type=float, default=0.95)
     p.add_argument("--no-her", action="store_true", help="disable HER (HER is kept on by default)")
     p.add_argument("--net-arch", type=int, nargs="+", default=[256, 256])
+    p.add_argument("--ent-coef", default="auto",
+                   help='"auto" (default), "auto_<init>", or a fixed float; raise to fight entropy collapse')
+    p.add_argument("--target-entropy", default="auto",
+                   help='"auto" (=-dim(A)) or a float; raise above -dim(A) to keep ent_coef from collapsing')
+    p.add_argument("--optimizer", default="adam", choices=["adam", "adamw"])
+    p.add_argument("--weight-decay", type=float, default=0.0)
     p.add_argument("--batch-size", type=int, default=256)
     p.add_argument("--buffer-size", type=int, default=1_000_000)
     p.add_argument("--learning-rate", type=float, default=3e-4)
@@ -89,6 +95,15 @@ def main():
         "replay_buffer_class": HerReplayBuffer,
         "replay_buffer_kwargs": {"n_sampled_goal": 4, "goal_selection_strategy": "future"},
     }
+    policy_kwargs = {"net_arch": args.net_arch}
+    if args.optimizer == "adamw":
+        policy_kwargs["optimizer_class"] = torch.optim.AdamW
+        policy_kwargs["optimizer_kwargs"] = {"weight_decay": args.weight_decay}
+    elif args.weight_decay > 0:
+        policy_kwargs["optimizer_kwargs"] = {"weight_decay": args.weight_decay}
+    ent_coef = args.ent_coef if str(args.ent_coef).startswith("auto") else float(args.ent_coef)
+    target_entropy = "auto" if str(args.target_entropy) == "auto" else float(args.target_entropy)
+
     if args.init_from and Path(args.init_from).exists():
         # Warm-start after a crash: policy weights are preserved; the replay buffer restarts.
         model = SAC.load(args.init_from, env=train_env, device=args.device)
@@ -98,12 +113,14 @@ def main():
             "MultiInputPolicy",
             train_env,
             **her_kwargs,
+            ent_coef=ent_coef,
+            target_entropy=target_entropy,
             buffer_size=args.buffer_size,
             batch_size=args.batch_size,
             gamma=args.gamma,
             learning_rate=args.learning_rate,
             learning_starts=args.learning_starts,
-            policy_kwargs={"net_arch": args.net_arch},
+            policy_kwargs=policy_kwargs,
             tensorboard_log=str(run_dir / "tb"),
             device=args.device,
             verbose=1,

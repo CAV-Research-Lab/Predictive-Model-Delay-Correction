@@ -28,6 +28,15 @@ COLORS = {
     "augmented_action": "#b14e2c",
     "augmented_action_delay": "#3f7f4f",
 }
+CONTROL_MODE_ORDER = ["pd_gain", "direct_control"]
+CONTROL_MODE_LABELS = {
+    "pd_gain": "PD gain control",
+    "direct_control": "Direct action control",
+}
+CONTROL_MODE_COLORS = {
+    "pd_gain": "#2f5f8f",
+    "direct_control": "#b14e2c",
+}
 
 
 def import_wandb():
@@ -115,6 +124,15 @@ def metric_label(metric):
         "episode_mean_distance": "IQM mean tracking distance",
     }
     return labels.get(metric, f"IQM {metric}")
+
+
+def control_mode_from_env_id(env_id):
+    env_id = str(env_id)
+    if "RemoteDirect" in env_id:
+        return "direct_control"
+    if "RemotePDNorm" in env_id:
+        return "pd_gain"
+    return env_id
 
 
 def expand_result_paths(results_csv):
@@ -241,6 +259,64 @@ def plot_action_vs_observation(ax, df, metric):
     ax.set_ylabel(metric_label(metric))
 
 
+def plot_control_mode_comparison(df, output_dir, prefix, metric):
+    df = df[df["experiment"] == "action_vs_observation"].copy()
+    if df.empty or "env_id" not in df.columns:
+        return None
+
+    df["control_mode"] = df["env_id"].map(control_mode_from_env_id)
+    present_modes = set(df["control_mode"].dropna().unique())
+    if not {"pd_gain", "direct_control"}.issubset(present_modes):
+        return None
+
+    fig, axes = plt.subplots(1, 3, figsize=(15.5, 4.2), constrained_layout=True)
+    linestyles = {"action_delay_only": "-", "observation_delay_only": "--"}
+    comparison_labels = {"action_delay_only": "action delay", "observation_delay_only": "observation delay"}
+
+    for ax, variant in zip(axes, VARIANT_ORDER):
+        part_df = df[df["variant"] == variant]
+        ax.set_title(VARIANT_LABELS[variant])
+        if part_df.empty:
+            ax.text(0.5, 0.5, "No data", ha="center", va="center", transform=ax.transAxes)
+            continue
+
+        summary = aggregate(part_df, ["control_mode", "comparison", "x_value"], metric)
+        for control_mode in CONTROL_MODE_ORDER:
+            for comparison, linestyle in linestyles.items():
+                part = summary[
+                    (summary["control_mode"] == control_mode) & (summary["comparison"] == comparison)
+                ].sort_values("x_value")
+                if part.empty:
+                    continue
+                xs = part["x_value"].to_numpy(dtype=float)
+                ys = part["iqm"].to_numpy(dtype=float)
+                q1 = part["q1"].to_numpy(dtype=float)
+                q3 = part["q3"].to_numpy(dtype=float)
+                label = f"{CONTROL_MODE_LABELS[control_mode]}: {comparison_labels[comparison]}"
+                ax.plot(
+                    xs,
+                    ys,
+                    marker="o",
+                    linewidth=1.7,
+                    linestyle=linestyle,
+                    color=CONTROL_MODE_COLORS[control_mode],
+                    label=label,
+                )
+                ax.fill_between(xs, q1, q3, color=CONTROL_MODE_COLORS[control_mode], alpha=0.13, linewidth=0)
+
+        ax.set_xlabel("Delay length")
+        ax.set_ylabel(metric_label(metric))
+
+    handles, labels = axes[0].get_legend_handles_labels()
+    if handles:
+        fig.legend(handles, labels, loc="lower center", ncol=2, bbox_to_anchor=(0.5, -0.18))
+
+    output = Path(output_dir) / f"{prefix}_control_mode_comparison.png"
+    fig.savefig(output, bbox_inches="tight")
+    plt.close(fig)
+    return output
+
+
 def plot_three_figures(df, output_dir, prefix, metric):
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -294,11 +370,15 @@ def plot_three_figures(df, output_dir, prefix, metric):
     fig.savefig(output_dir / f"{prefix}_delay_structure_generalization.png", bbox_inches="tight")
     plt.close(fig)
 
-    return [
+    outputs = [
         output_dir / f"{prefix}_delay_length_impact.png",
         output_dir / f"{prefix}_state_information.png",
         output_dir / f"{prefix}_delay_structure_generalization.png",
     ]
+    control_output = plot_control_mode_comparison(df, output_dir, prefix, metric)
+    if control_output is not None:
+        outputs.append(control_output)
+    return outputs
 
 
 def default_wandb_run_id(args):
@@ -353,6 +433,8 @@ def log_plots_to_wandb(args, df, outputs, summary_csv):
         "plots/delay_structure_generalization": wandb.Image(str(outputs[2])),
         "plots/iqm_iqr_summary": wandb.Table(dataframe=summary_df),
     }
+    if len(outputs) > 3:
+        payload["plots/control_mode_comparison"] = wandb.Image(str(outputs[3]))
     run.log(payload)
     run.summary["plot_count"] = len(outputs)
     run.summary["summary_rows"] = len(summary_df)

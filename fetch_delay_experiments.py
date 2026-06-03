@@ -150,6 +150,8 @@ def sanitize(value):
 
 
 def short_env(env_id):
+    if env_id.startswith("FetchPush-Remote"):
+        return env_id.replace("-v0", "")
     if env_id.startswith("FetchPush"):
         return "FetchPush"
     return env_id.replace("-RemotePDNorm-v0", "")

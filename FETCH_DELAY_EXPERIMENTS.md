@@ -4,7 +4,10 @@ This runner recreates the augmented-vs-unseen delay comparisons for
 `FetchPush-RemotePDNorm-v0`. Delay pairs are written as
 `(action delay, observation delay)` in environment steps.
 `FetchPush-RemotePDNorm-v0` is the local/remote PD-gain environment registered
-on top of `FetchPush-v2`.
+on top of `FetchPush-v2`. `FetchPush-RemoteDirect-v0` uses the same
+local/remote operator-reference setup but lets SAC control the remote Fetch
+action directly, which is useful for checking whether action-delay sensitivity
+comes from the PD-gain abstraction or from delayed remote tracking itself.
 
 ## Variants
 
@@ -158,6 +161,47 @@ environment id and write to a separate output directory:
   --wandb-run-name-prefix "FetchPush-v2 delay 80000 steps"
 ```
 
+The same mechanism can run the original `FetchReach-v2` task. This is useful as
+a non-local/remote control to test whether the augmented-state and
+action-vs-observation effects are specific to the local/remote PD-gain setup:
+
+```bash
+.venv/bin/python run_fetch_delay_pipeline.py \
+  --env-id FetchReach-v2 \
+  --output-dir fetch_delay_runs_FetchReach_v2 \
+  --results-csv fetch_delay_runs_FetchReach_v2/evaluations.csv \
+  --plots-dir fetch_delay_runs_FetchReach_v2/plots \
+  --seeds 0 1 2 3 4 \
+  --steps 80000 \
+  --n-eval-episodes 20 \
+  --device cuda \
+  --wandb \
+  --wandb-project fetch-delay \
+  --wandb-run-name-prefix "FetchReach-v2 delay 80000 steps"
+```
+
+`FetchReach-v2` is registered locally for compatibility when the installed
+Gymnasium Robotics package only exposes `FetchReach-v4`.
+
+To run the local/remote direct-action control comparison, swap only the
+environment id. The Slurm script does the same output-directory separation
+automatically:
+
+```bash
+.venv/bin/python run_fetch_delay_pipeline.py \
+  --env-id FetchPush-RemoteDirect-v0 \
+  --output-dir fetch_delay_runs_FetchPush_RemoteDirect_v0 \
+  --results-csv fetch_delay_runs_FetchPush_RemoteDirect_v0/evaluations.csv \
+  --plots-dir fetch_delay_runs_FetchPush_RemoteDirect_v0/plots \
+  --seeds 0 1 2 3 4 \
+  --steps 80000 \
+  --n-eval-episodes 20 \
+  --device cuda \
+  --wandb \
+  --wandb-project fetch-delay \
+  --wandb-run-name-prefix "FetchPush-RemoteDirect-v0 delay 80000 steps"
+```
+
 ## Plots
 
 ```bash
@@ -185,6 +229,20 @@ summary table `FetchPush_plot_summary.csv`:
 - `FetchPush_delay_structure_generalization.png`
 - `FetchPush_plot_summary.csv`
 
+If the input CSVs include both `FetchPush-RemotePDNorm-v0` and
+`FetchPush-RemoteDirect-v0`, the plotter also writes
+`FetchPush_control_mode_comparison.png` for the action-vs-observation delay
+experiment:
+
+```bash
+.venv/bin/python plot_fetch_delay_experiments.py \
+  --results-csv \
+  fetch_delay_runs/evaluations.csv \
+  fetch_delay_runs_FetchPush_RemoteDirect_v0/evaluations.csv \
+  --output-dir fetch_delay_runs_control_comparison/plots \
+  --prefix FetchPush
+```
+
 ## W&B Logging
 
 To log directly into a W&B project, install/login once:
@@ -203,6 +261,7 @@ per completed train/eval/seed job, and
 - `plots/delay_length_impact`
 - `plots/state_information`
 - `plots/delay_structure_generalization`
+- `plots/control_mode_comparison` when both PD-gain and direct-control CSVs are present
 - `plots/iqm_iqr_summary`
 
 Run names are informative, for example
@@ -267,13 +326,17 @@ Common overrides:
 ```bash
 sbatch --export=ALL,SEEDS="0",WANDB_PROJECT=fetch-delay slurm/run_fetch_delay_pipeline.sbatch
 sbatch --export=ALL,ENV_ID=FetchPush-v2 slurm/run_fetch_delay_pipeline.sbatch
+sbatch --export=ALL,ENV_ID=FetchReach-v2 slurm/run_fetch_delay_pipeline.sbatch
+sbatch --export=ALL,ENV_ID=FetchPush-RemoteDirect-v0 slurm/run_fetch_delay_pipeline.sbatch
 sbatch --export=ALL,WANDB_MODE=offline slurm/run_fetch_delay_pipeline.sbatch
 ```
 
-`ENV_ID` defaults to `FetchPush-RemotePDNorm-v0`. When `ENV_ID=FetchPush-v2`
-is used and `OUTPUT_DIR` is not provided, the script writes to
-`fetch_delay_runs_FetchPush_v2` so the original-environment results do not mix
-with the local/remote results.
+`ENV_ID` defaults to `FetchPush-RemotePDNorm-v0`. When any other `ENV_ID` is
+used and `OUTPUT_DIR` is not provided, the script writes to a safe
+environment-specific directory such as `fetch_delay_runs_FetchPush_v2` or
+`fetch_delay_runs_FetchReach_v2` or `fetch_delay_runs_FetchPush_RemoteDirect_v0`,
+so control-mode and
+original-environment results do not mix with the PD-gain local/remote results.
 
 For a sharded original-environment run, pass the same `ENV_ID` to both the array
 and finalize jobs:

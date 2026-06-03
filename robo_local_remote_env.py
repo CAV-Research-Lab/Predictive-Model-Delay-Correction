@@ -31,6 +31,8 @@ import pickle
 
 
 FETCH_V2_COMPAT_ENVS = {
+    "FetchReach-v2": ("gymnasium_robotics.envs.fetch.reach:MujocoFetchReachEnv", "sparse"),
+    "FetchReachDense-v2": ("gymnasium_robotics.envs.fetch.reach:MujocoFetchReachEnv", "dense"),
     "FetchPush-v2": ("gymnasium_robotics.envs.fetch.push:MujocoFetchPushEnv", "sparse"),
     "FetchPushDense-v2": ("gymnasium_robotics.envs.fetch.push:MujocoFetchPushEnv", "dense"),
     "FetchSlide-v2": ("gymnasium_robotics.envs.fetch.slide:MujocoFetchSlideEnv", "sparse"),
@@ -192,6 +194,37 @@ class REnvPDNormObs(gym.Env):
         return float(-np.linalg.norm(achieved_goal - desired_goal))
 
 
+class REnvDirectControl(REnvPDNormObs):
+    """
+    Local-remote FetchPush environment where the RL policy controls the remote
+    Fetch action directly instead of outputting PD gains.
+
+    The operator policy and reward are unchanged from REnvPDNormObs, so this
+    isolates whether delay sensitivity comes from the PD-gain control
+    abstraction or from delayed remote tracking itself.
+    """
+
+    def __init__(self, env_id="FetchPush-v2", seed=None, fname=None, operator_model=None):
+        super().__init__(env_id=env_id, seed=seed, fname=fname, operator_model=operator_model)
+        self.action_space = self.remote_Env.action_space
+
+    def step(self, action):
+        remote_action = np.asarray(action, dtype=np.float32)
+        remote_action = np.clip(remote_action, self.action_space.low, self.action_space.high)
+        self.r_obs, r_rew, r_term, r_trunc, r_info = self.remote_Env.step(remote_action)
+
+        operator_action, _states = self.operator.predict(self.o_obs, deterministic=True)
+        self.o_obs, o_rew, o_term, o_trunc, o_info = self.operator_Env.step(operator_action)
+
+        self.r_obs = format_obs(self.r_obs, self.o_obs)
+        self.prev_error = self.r_obs["achieved_goal"] - self.r_obs["desired_goal"]
+
+        reward = -np.linalg.norm(self.prev_error)
+        self.reward = reward
+        self.rew_count += float(reward)
+        return self.r_obs["observation"], float(reward), r_term, r_trunc, {"operator_reward": o_rew}
+
+
 # Local-remote variants. Any Fetch task with the SAME 25-dim obs / 4-dim action layout as
 # FetchPush works unchanged because format_obs() slices fixed indices: FetchPush, FetchSlide,
 # FetchPickAndPlace all share that layout. FetchReach (10-dim, no object) would NOT work here.
@@ -199,6 +232,10 @@ LOCAL_REMOTE_ENVS = {
     "FetchPush-RemotePDNorm-v0": "FetchPush-v2",
     "FetchSlide-RemotePDNorm-v0": "FetchSlide-v2",
     "FetchPickAndPlace-RemotePDNorm-v0": "FetchPickAndPlace-v2",
+}
+
+DIRECT_LOCAL_REMOTE_ENVS = {
+    "FetchPush-RemoteDirect-v0": "FetchPush-v2",
 }
 
 
@@ -211,6 +248,16 @@ def register_local_remote_envs():
             register(
                 id=remote_id,
                 entry_point="robo_local_remote_env:REnvPDNormObs",
+                max_episode_steps=50,
+                kwargs={"env_id": base_env_id},
+            )
+    for remote_id, base_env_id in DIRECT_LOCAL_REMOTE_ENVS.items():
+        try:
+            gym.spec(remote_id)
+        except Exception:
+            register(
+                id=remote_id,
+                entry_point="robo_local_remote_env:REnvDirectControl",
                 max_episode_steps=50,
                 kwargs={"env_id": base_env_id},
             )

@@ -16,6 +16,18 @@ from fetch_delay_experiments import EXPERIMENTS, VARIANTS
 ROOT = Path(__file__).resolve().parent
 
 
+def default_prefix(env_id):
+    if env_id.startswith("FetchReach"):
+        return "FetchReach"
+    if env_id.startswith("FetchPush"):
+        return "FetchPush"
+    if env_id.startswith("FetchSlide"):
+        return "FetchSlide"
+    if env_id.startswith("FetchPickAndPlace"):
+        return "FetchPickAndPlace"
+    return env_id.replace("-RemotePDNorm-v0", "").replace("-v0", "").replace("-v2", "")
+
+
 def run(cmd):
     print("\n$ " + " ".join(str(part) for part in cmd), flush=True)
     subprocess.run(cmd, cwd=ROOT, check=True)
@@ -134,7 +146,7 @@ def build_parser():
     parser.add_argument("--results-csv", default=None)
     parser.add_argument("--plots-dir", default=None)
     parser.add_argument("--manifest", default=None, help="Manifest path or glob used for training metadata and checking.")
-    parser.add_argument("--prefix", default="FetchPush")
+    parser.add_argument("--prefix", default=None)
     parser.add_argument("--seeds", nargs="+", type=int, default=[0])
     parser.add_argument("--steps", type=int, default=80_000)
     parser.add_argument("--n-eval-episodes", type=int, default=10)
@@ -186,6 +198,8 @@ def build_parser():
 
 def main():
     args = build_parser().parse_args()
+    if args.prefix is None:
+        args.prefix = default_prefix(args.env_id)
     output_dir = Path(args.output_dir)
     results_csv = Path(args.results_csv) if args.results_csv else output_dir / "evaluations.csv"
     plots_dir = Path(args.plots_dir) if args.plots_dir else output_dir / "plots"

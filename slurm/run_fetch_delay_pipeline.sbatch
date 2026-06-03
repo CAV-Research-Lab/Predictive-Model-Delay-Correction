@@ -10,6 +10,8 @@
 # Useful overrides:
 #   sbatch --export=ALL,SEEDS="0",STEPS=80000,WANDB_PROJECT=fetch-delay slurm/run_fetch_delay_pipeline.sbatch
 #   sbatch --export=ALL,ENV_ID=FetchPush-v2 slurm/run_fetch_delay_pipeline.sbatch
+#   sbatch --export=ALL,ENV_ID=FetchReach-v2 slurm/run_fetch_delay_pipeline.sbatch
+#   sbatch --export=ALL,ENV_ID=FetchPush-RemoteDirect-v0 slurm/run_fetch_delay_pipeline.sbatch
 #   sbatch --export=ALL,WANDB_MODE=offline slurm/run_fetch_delay_pipeline.sbatch
 #
 #SBATCH --job-name=fetch-delay
@@ -47,7 +49,15 @@ if [[ -z "${OUTPUT_DIR:-}" ]]; then
 fi
 RESULTS_CSV="${RESULTS_CSV:-${OUTPUT_DIR}/evaluations.csv}"
 PLOTS_DIR="${PLOTS_DIR:-${OUTPUT_DIR}/plots}"
-PREFIX="${PREFIX:-FetchPush}"
+if [[ -z "${PREFIX:-}" ]]; then
+  case "$ENV_ID" in
+    FetchReach*) PREFIX="FetchReach" ;;
+    FetchPush*) PREFIX="FetchPush" ;;
+    FetchSlide*) PREFIX="FetchSlide" ;;
+    FetchPickAndPlace*) PREFIX="FetchPickAndPlace" ;;
+    *) PREFIX="${ENV_ID%-v0}" ;;
+  esac
+fi
 
 SEEDS="${SEEDS:-0 1 2 3 4}"
 STEPS="${STEPS:-80000}"

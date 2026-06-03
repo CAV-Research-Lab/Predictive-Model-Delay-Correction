@@ -30,6 +30,13 @@ class PMDC(gym.Wrapper):
         self.start_training = 1000
         self.replay_buffer = deque(maxlen=self.buffer_size)
 
+        # Experimental stabilisation knobs (env-var gated; defaults preserve original behaviour).
+        # PMDC_TRAIN_EVERY=K -> also train the world model every K env steps (0 = only once/episode).
+        # PMDC_FIX_PREVOBS=1 -> update prev_obs each step so (state, action, next_state) pairs are valid.
+        self.train_every = int(os.environ.get("PMDC_TRAIN_EVERY", "0"))
+        self.fix_prev_obs = os.environ.get("PMDC_FIX_PREVOBS", "0") == "1"
+        self._step_i = 0
+
         self.layer_size = 128
         self.n_layers = 2
 
@@ -98,6 +105,12 @@ class PMDC(gym.Wrapper):
             observation.astype(np.float32),
         )
         self.replay_buffer.append(training_data)
+
+        self._step_i += 1
+        if self.train_every and len(self.replay_buffer) > self.start_training and self._step_i % self.train_every == 0:
+            self.learn()
+        if self.fix_prev_obs:
+            self.prev_obs = observation
 
         self.recalibrate(observation)
 

@@ -1,0 +1,11 @@
+env_id,variant,variant_label,seed,delay,steps,success_rate,return_mean,return_std,episode_len_mean
+FetchReach-v2,no_delay,No delay,0,10,2000,0.0,-50.0,0.0,50.0
+FetchReach-v2,no_delay,No delay,0,10,4000,0.0,-48.0,6.0,50.0
+FetchReach-v2,no_delay,No delay,0,10,6000,0.0,-48.7,3.9000000000000004,50.0
+FetchReach-v2,no_delay,No delay,0,10,8000,0.0,-46.8,6.415605972938176,50.0
+FetchReach-v2,no_delay,No delay,0,10,10000,0.2,-45.8,8.818163074019441,50.0
+FetchReach-v2,no_delay,No delay,0,10,12000,0.0,-50.0,0.0,50.0
+FetchReach-v2,no_delay,No delay,0,10,14000,0.2,-43.7,10.807867504739313,50.0
+FetchReach-v2,no_delay,No delay,0,10,16000,0.3,-31.4,17.3908021666627,50.0
+FetchReach-v2,no_delay,No delay,0,10,18000,0.8,-11.8,10.186265262597475,50.0
+FetchReach-v2,no_delay,No delay,0,10,20000,0.4,-31.6,18.847811544049353,50.0

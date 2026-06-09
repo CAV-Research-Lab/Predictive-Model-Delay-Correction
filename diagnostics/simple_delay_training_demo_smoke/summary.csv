@@ -1,0 +1,13 @@
+experiment,experiment_label,variant,variant_label,delay_label,train_steps,metric,iqm,q1,q3,n
+constant,Constant delay,unseen,Unseen delay,"(10,10)",500,true_return,-186.6903128027916,-188.02124390006065,-185.35938170552254,2
+constant,Constant delay,unseen,Unseen delay,"(10,10)",1000,true_return,-203.14032208919525,-207.34368866682053,-198.93695551156998,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",500,true_return,-187.24541652202606,-188.30691975355148,-186.18391329050064,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",1000,true_return,-199.08786487579346,-203.9198775291443,-194.25585222244263,2
+constant,Constant delay,unseen,Unseen delay,"(10,10)",500,mean_distance,2.074336808919907,2.059548685616917,2.089124932222896,2
+constant,Constant delay,unseen,Unseen delay,"(10,10)",1000,mean_distance,2.2571146898799475,2.210410616795222,2.3038187629646725,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",500,mean_distance,2.0805046280225117,2.0687101476722294,2.0922991083727944,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",1000,mean_distance,2.212087387508816,2.1583983580271404,2.2657764169904917,2
+constant,Constant delay,unseen,Unseen delay,"(10,10)",500,success,0.0,0.0,0.0,2
+constant,Constant delay,unseen,Unseen delay,"(10,10)",1000,success,0.0,0.0,0.0,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",500,success,0.0,0.0,0.0,2
+constant,Constant delay,augmented_action,Augmented (+action buffer),"(10,10)",1000,success,0.0,0.0,0.0,2

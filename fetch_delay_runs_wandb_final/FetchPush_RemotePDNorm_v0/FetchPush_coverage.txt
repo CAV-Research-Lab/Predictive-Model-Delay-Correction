@@ -1,0 +1,8 @@
+evaluation_runs: 450
+episode_rows: 9000
+row_sources: {'history': 450}
+experiment_counts: {'action_vs_observation': 3000, 'constant_sweep': 1500, 'generalization_constant': 1500, 'generalization_stochastic': 1200, 'state_constant': 300, 'state_stochastic': 300, 'stochastic_sweep': 1200}
+variant_counts: {'augmented_action': 3000, 'augmented_action_delay': 3000, 'unseen': 3000}
+seed_counts: {'0': 1800, '1': 1800, '2': 1800, '3': 1800, '4': 1800}
+group_counts: {'FetchPush-RemotePDNorm-v0-80000steps-20evaleps-0_1_2_3_4': 9000}
+latest_run_created_at: 2026-06-02T20:06:14Z

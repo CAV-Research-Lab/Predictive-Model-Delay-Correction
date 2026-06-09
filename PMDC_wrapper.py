@@ -36,6 +36,23 @@ class PMDC(gym.Wrapper):
         self.train_every = int(os.environ.get("PMDC_TRAIN_EVERY", "0"))
         self.fix_prev_obs = os.environ.get("PMDC_FIX_PREVOBS", "0") == "1"
         self._step_i = 0
+        self.wm_loss = 0.0       # mean ensemble Huber loss at the last world-model update
+        self.wm_pred_err = 0.0   # delay-horizon prediction error ||obs - predicted|| each step
+        self.freeze_wm = int(os.environ.get("PMDC_FREEZE_WM", "0"))  # stop WM updates after this global step (0=never)
+        self.pessimism = float(os.environ.get("PMDC_PESSIMISM", "0"))  # subtract beta*ensemble_disagreement from reward
+        self.wm_disagreement = 0.0
+        self.wm_reward_opt = 0.0  # real_dist - predicted_dist; >0 = world model OPTIMISTIC about tracking
+        self.member_states = None  # per-member forward trajectories (compounding-uncertainty penalty)
+        self.real_reward_mix = float(os.environ.get("PMDC_REAL_REWARD_MIX", "0"))  # blend honest delayed reward
+
+        # PMDC_PRED_MODE selects the delay-corrected state predictor:
+        #   "sbsp" (default) -- State-Buffer based State Prediction: reuse a cached buffer and
+        #                       correct it with the current 1-step residual (constant-drift recalibration).
+        #   "absp"           -- Action-Buffer based State Prediction: recompute the full alpha-step
+        #                       rollout from the latest true observation each step (no recalibration).
+        # ABSP is the prior method (O(alpha)/step vs SBSP's O(1)); see thesis Ch.3 SBSP-vs-ABSP.
+        self.pred_mode = os.environ.get("PMDC_PRED_MODE", "sbsp").lower()
+        self.action_buffer = deque(maxlen=self.delay)  # last alpha actions, for ABSP rollouts
 
         self.layer_size = 128
         self.n_layers = 2
@@ -46,6 +63,9 @@ class PMDC(gym.Wrapper):
         self.log = pd.DataFrame({"Step": [], "Delayed episodic reward": []})
 
         params = self._load_or_create_model_params()
+        wm_lr = os.environ.get("PMDC_WM_LR")
+        if wm_lr:
+            params["beta"] = float(wm_lr)  # override world-model (ensemble) learning rate
         self.dc_models = [DCNN(**params).eval() for _ in range(n_models)]
         for model in self.dc_models:
             model.learning_rate = np.random.randint(-100, 100) / 1_200_000
@@ -86,10 +106,14 @@ class PMDC(gym.Wrapper):
 
         self.prev_obs = obs
         self.future_state_buffer = deque()
+        # Prime the ABSP action buffer with alpha zero-actions, matching initial_undelay's
+        # zero-action assumption, so the first steps still roll a full alpha-step horizon.
+        zero_act = np.zeros(self.action_space.shape[0], dtype=np.float32)
+        self.action_buffer = deque([zero_act.copy() for _ in range(self.delay)], maxlen=self.delay)
 
         self.future_state = self.initial_undelay(obs)
 
-        if len(self.replay_buffer) > self.start_training:
+        if len(self.replay_buffer) > self.start_training and not (self.freeze_wm and self._step_i >= self.freeze_wm):
             self.learn()
         return self.future_state, info
 
@@ -112,31 +136,62 @@ class PMDC(gym.Wrapper):
         if self.fix_prev_obs:
             self.prev_obs = observation
 
-        self.recalibrate(observation)
+        if self.pred_mode == "absp":
+            # ABSP: recompute the full alpha-step rollout from the latest TRUE observation,
+            # applying the buffered in-flight actions in order. No recalibration / constant-drift
+            # patch -- each future state is recalculated from scratch (O(alpha) per step).
+            self._measure_residual(observation)  # diagnostics only; keeps the buffer length bounded
+            self.action_buffer.append(action.astype(np.float32))
+            state = observation.astype(np.float32)
+            predictions = None
+            for past_action in self.action_buffer:  # oldest -> newest == alpha forward steps
+                predictions = np.array([model.predict(state, past_action) for model in self.dc_models])
+                state = predictions.mean(axis=0)
+            self.future_state = state
+            # ensemble spread at the final (alpha-ahead) rollout step, reward-relevant dims
+            if predictions is not None:
+                self.wm_disagreement = float(predictions[:, [0, 1, 2, 11, 12, 13]].std(axis=0).mean())
+            self.future_state_buffer.append(self.future_state)  # for the next step's residual diagnostic
+        else:
+            # SBSP (default): recalibrate the cached buffer, then extend it by one prediction.
+            self.recalibrate(observation)
 
-        predictions = []
-        for model in self.dc_models:
-            predictions.append(model.predict(self.future_state, action))
-        self.future_state = np.mean(predictions, axis=0)
+            predictions = np.array([model.predict(self.future_state, action) for model in self.dc_models])
+            self.future_state = predictions.mean(axis=0)
+            # 1-step ensemble spread on the reward-relevant dims (EE pos [0:3] + operator pos [11:14])
+            self.wm_disagreement = float(predictions[:, [0, 1, 2, 11, 12, 13]].std(axis=0).mean())
 
-        self.future_state_buffer.append(self.future_state)
+            self.future_state_buffer.append(self.future_state)
 
         reward = self.calculate_reward(self.future_state)
+        if self.pessimism and self.member_states is not None:
+            # compounding horizon uncertainty: each member rolls forward on its OWN trajectory,
+            # so the spread reflects the model's uncertainty about the delay-step-ahead state.
+            self.member_states = np.array([self.dc_models[i].predict(self.member_states[i], action)
+                                           for i in range(self.n_models)])
+            self.wm_disagreement = float(self.member_states[:, [0, 1, 2, 11, 12, 13]].std(axis=0).mean())
+            reward -= self.pessimism * self.wm_disagreement  # penalise uncertain (optimistic) predictions
+        if self.real_reward_mix:
+            reward = (1.0 - self.real_reward_mix) * reward + self.real_reward_mix * float(self.d_reward)
 
         return self.future_state, reward, terminated, truncated, {"Delayed Reward": self.d_reward_total}
 
     def initial_undelay(self, observation):
         action = [0] * self.action_space.shape[0]
+        members = np.array([observation] * self.n_models, dtype=np.float32) if self.pessimism else None
         for step in range(self.delay):
             predictions = []
             self.prev_obs = observation
 
-            for model in self.dc_models:
+            for i, model in enumerate(self.dc_models):
                 predictions.append(model.predict(observation, action))
+                if members is not None:
+                    members[i] = model.predict(members[i], action)
             observation = np.mean(predictions, axis=0)
 
             self.future_state_buffer.append(observation)
 
+        self.member_states = members
         return observation
 
     def learn(self):
@@ -147,18 +202,30 @@ class PMDC(gym.Wrapper):
         obs = np.array([item for item in obs])
         obs_ = np.array([item for item in obs_])
 
+        losses = []
         for model in self.dc_models:
             model.train()
-            model.learn(obs, obs_)
+            losses.append(model.learn(obs, obs_))
             model.eval()
+        self.wm_loss = float(np.mean(losses))
 
-    def recalibrate(self, observation):
+    def _measure_residual(self, observation):
+        """Pop the oldest alpha-ahead prediction and log the realised delay-horizon error.
+        Shared by SBSP (which then patches the buffer with it) and ABSP (diagnostics only)."""
         if self.future_state_buffer:
             predicted_state = self.future_state_buffer.popleft()
         else:
             raise Exception("Delay must be greater than 0.")
 
         difference = observation - predicted_state
+        self.wm_pred_err = float(np.linalg.norm(difference))
+        _pd = np.linalg.norm(predicted_state[[0, 1, 2]] - predicted_state[[11, 12, 13]])
+        _rd = np.linalg.norm(observation[[0, 1, 2]] - observation[[11, 12, 13]])
+        self.wm_reward_opt = float(_rd - _pd)  # >0 = predicted error < real error = optimistic reward
+        return difference
+
+    def recalibrate(self, observation):
+        difference = self._measure_residual(observation)
 
         x = np.array(self.future_state_buffer)
         for i in range(len(x)):
@@ -166,6 +233,8 @@ class PMDC(gym.Wrapper):
 
         self.future_state_buffer = deque(x)
         self.future_state += difference
+        if self.member_states is not None:
+            self.member_states = self.member_states + difference  # common shift keeps members reality-centred
 
     def calculate_reward(self, obs):
         reward = -np.linalg.norm(obs[[0, 1, 2]] - obs[[11, 12, 13]])

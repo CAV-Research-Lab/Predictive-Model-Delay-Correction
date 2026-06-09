@@ -248,6 +248,8 @@ Tooling (created this session; untracked):
 - `final_summary.py` — summary bar/line figure; reads `/tmp/real_results.json` (no hardcoding).
 - `evaluate_policies.py` — deterministic rollout eval. **Valid for SAC/A-SAC only** (Pitfall E).
 - `plot_results.py` — CSV-based plotter; coarser (100-step sampling), kept for convenience.
+- `openloop_rollout_error.py` — **§3.4.4 figure**: world-model state-estimation error vs delay
+  horizon, SBSP recalibration on/off, in end-effector cm, IQM+IQR over 3 seeds. See §10.
 
 Data / artifacts:
 - `pred_logs/` — TensorBoard (authoritative). `pred_results/` — sparse CSVs. `pred_rl_models/` — policy zips.
@@ -408,3 +410,63 @@ Four findings worth keeping:
 Artifacts: `FetchSlide-v2_SAC_seed0.zip` (canonical = 67% best), `_capent_best80.zip` (copy of
 same), `_dense60pct.zip` / `_dense29pct.zip` (earlier fallbacks), `_capent_run/`
 (best/ + checkpoints/ every 100k + tb/). W&B run under `cavlab/pmdc-fetch-operators`.
+
+---
+
+## 10. §3.4.4 error-propagation figure (`openloop_rollout_error.py`)
+
+Turns the §3.4.4 error-propagation argument into a **measured** one: how accurately can the
+world model estimate the true current state across the communication delay, with vs without
+SBSP recalibration, as a function of the number of steps k it must bridge (k = 1..alpha)?
+Error is in end-effector distance (cm), same scale as the goal tolerance eps = 5 cm.
+
+**Framing (critical — got this wrong twice).** PMDC has **no observation delay, only action
+delay**, so true measurements arrive every step and recalibration genuinely uses them. The two
+arms (same frozen world model):
+- **naive open-loop (recal off):** roll the WM forward k steps from a k-steps-stale true sync,
+  ignoring intervening measurements -> compounds with k.
+- **SBSP recalibration (recal on):** faithful replay of `PMDC.recalibrate`/`initial_undelay` at
+  delay k -- the estimate re-anchored by every arriving residual (== `wm_pred_err` generalised
+  to each k) -> stays bounded.
+Do **not** use a forward buffer-snapshot for the recal arm: it conflates horizon with
+number-of-corrections and hides the flat curve.
+
+**The world model must be CONVERGED** for the propagation to be visible (default
+`--wm-train-every 4`, ~20k grad steps over 80k + small polish). At PMDC's *deployment* cadence
+(`--wm-train-every 0`, once per episode, ~1600 grad steps) the WM stays weak (`wm_pred_err`
+~0.5-1.9 vs ~0.1 converged) and naive open-loop *saturates* at the ~16 cm workspace scale from
+step 1 (flat, not compounding) -> a messy, confounded figure. That sparse-cadence run is kept as
+`*_deployWM*` (a real secondary finding: PMDC's online WM is individually weak; recalibration is
+what makes it usable at the operating delay).
+
+**WM is not persisted (Pitfall E)**, so the script trains the ensemble online with
+`PMDC_FIX_PREVOBS=1` (finding F1), then freezes it; trajectories come from the trained PMDC
+policy. Reusing the seed-0 policy with a fresh WM leaves the loop somewhat off-distribution
+(true tracking ~14-22 cm vs deployed ~5 cm) -- recalibration stays flat regardless.
+
+```bash
+# 3 seeds in parallel over the 80k thesis horizon, then auto-merge (see /tmp driver pattern)
+for S in 0 1 2; do
+  OMP_NUM_THREADS=3 python3 openloop_rollout_error.py --delay-range 250-290 --seeds $S \
+    --wm-warmup-steps 80000 --wm-train-every 4 --wm-polish-iters 2000 --eval-episodes 20 \
+    --device cuda --output-dir diagnostics/openloop_rollout --tag s$S --torch-threads 3 & done; wait
+python3 openloop_rollout_error.py --combine-tags s0 s1 s2 --output-dir diagnostics/openloop_rollout \
+  --tag FetchPush_250-290ms          # merge -> figures + summary.csv + .npz
+python3 openloop_rollout_error.py --replot --tag FetchPush_250-290ms   # redraw only (fast)
+```
+
+Outputs to `diagnostics/openloop_rollout/`: `*_remote_ee.png` (primary), `*_all_metrics.png`
+(remote/operator EE, tracking-reward error, full-state L2), `*_summary.csv`, `*.npz`.
+
+**Result (FetchPush 250-290ms, alpha=24, 3 seeds, 80k, converged WM), remote-EE error cm:**
+
+| k (steps) | 1 | 4 | 8 | 16 | 24 |
+|-----------|---|---|---|----|----|
+| naive open-loop | 4.3 | 10.1 | 15.8 | 23.1 | **24.8** |
+| SBSP recal      | 4.4 | 5.8 | 5.0 | 4.8 | **4.85** |
+
+Naive open-loop error compounds to ~25 cm (5x the goal tolerance) at the full delay; SBSP recal
+stays flat at ~5 cm (== eps) across the whole horizon -> the §3.4.4 claim, demonstrated. (One
+wart: an isolated recal spike at **k=2**, the degenerate minimal-bridge case where the single
+residual correction reduces to acceleration-sensitive linear extrapolation; flat for k>=3. The
+plot y-axis is framed on the naive curve so it does not dominate.)

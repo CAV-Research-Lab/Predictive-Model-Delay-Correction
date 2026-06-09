@@ -43,15 +43,28 @@ NUMERIC_COLUMNS = [
     "episode_return",
     "episode_mean_reward",
     "episode_mean_distance",
+    "episode_final_goal_distance",
+    "episode_min_goal_distance",
+    "episode_success",
 ]
 SUMMARY_MEAN_KEYS = {
     "episode_steps": "eval/episode_steps_mean",
     "episode_return": "eval/episode_return_mean",
     "episode_mean_reward": "eval/episode_mean_reward_mean",
     "episode_mean_distance": "eval/episode_mean_distance_mean",
+    "episode_final_goal_distance": "eval/episode_final_goal_distance_mean",
+    "episode_min_goal_distance": "eval/episode_min_goal_distance_mean",
+    "episode_success": "eval/success_rate",
 }
 HISTORY_KEYS = ["episode", *(f"eval/{column}" for column in NUMERIC_COLUMNS)]
-METRICS = ["episode_return", "episode_mean_reward", "episode_mean_distance"]
+METRICS = [
+    "episode_return",
+    "episode_mean_reward",
+    "episode_mean_distance",
+    "episode_final_goal_distance",
+    "episode_min_goal_distance",
+    "episode_success",
+]
 
 
 def import_wandb():

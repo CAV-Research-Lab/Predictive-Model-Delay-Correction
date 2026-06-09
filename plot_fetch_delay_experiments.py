@@ -122,6 +122,9 @@ def metric_label(metric):
         "episode_return": "IQM episodic return",
         "episode_mean_reward": "IQM mean reward",
         "episode_mean_distance": "IQM mean tracking distance",
+        "episode_final_goal_distance": "IQM final goal distance",
+        "episode_min_goal_distance": "IQM minimum goal distance",
+        "episode_success": "IQM success rate",
     }
     return labels.get(metric, f"IQM {metric}")
 
@@ -222,8 +225,8 @@ def plot_state_bars(ax, df, metric, title):
         else:
             item = row.iloc[0]
             heights.append(item["iqm"])
-            lower.append(item["iqm"] - item["q1"])
-            upper.append(item["q3"] - item["iqm"])
+            lower.append(max(0.0, item["iqm"] - item["q1"]))
+            upper.append(max(0.0, item["q3"] - item["iqm"]))
         colors.append(COLORS[variant])
 
     ax.bar(xs, heights, color=colors, width=0.72)
@@ -453,7 +456,14 @@ def build_parser():
     parser.add_argument(
         "--metric",
         default="episode_return",
-        choices=["episode_return", "episode_mean_reward", "episode_mean_distance"],
+        choices=[
+            "episode_return",
+            "episode_mean_reward",
+            "episode_mean_distance",
+            "episode_final_goal_distance",
+            "episode_min_goal_distance",
+            "episode_success",
+        ],
     )
     parser.add_argument("--wandb", action="store_true")
     parser.add_argument("--wandb-project", default="fetch-delay")

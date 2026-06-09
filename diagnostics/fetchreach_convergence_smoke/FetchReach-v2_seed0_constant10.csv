@@ -1,0 +1,5 @@
+env_id,variant,variant_label,seed,delay,steps,success_rate,return_mean,return_std,episode_len_mean
+FetchReach-v2,unseen,Unseen delay,0,10,50,0.0,-50.0,0.0,60.0
+FetchReach-v2,unseen,Unseen delay,0,10,100,0.0,-50.0,0.0,60.0
+FetchReach-v2,augmented_action,Augmented (+action buffer),0,10,50,0.0,-50.0,0.0,60.0
+FetchReach-v2,augmented_action,Augmented (+action buffer),0,10,100,0.0,-50.0,0.0,60.0

@@ -1,0 +1,226 @@
+condition_id,condition_label,delay_family,variant,variant_label,delay_label,train_steps,metric,iqm,q1,q3,n
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",0,true_return,-54.94612422690261,-61.412978005595505,-48.092192042269744,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",2880,true_return,-51.425614332586214,-59.19791597034782,-44.841378648765385,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",5760,true_return,-52.52034311400106,-57.95382893970236,-44.293787357979454,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",8640,true_return,-54.65161924836381,-63.289507827721536,-44.97325635666493,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",11520,true_return,-50.253003547239736,-55.99164622044191,-41.77088774018921,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",14400,true_return,-56.02580311063988,-62.979693102883175,-49.25612084520981,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",17280,true_return,-53.71874771589258,-58.71980828978121,-47.40261336416006,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",20160,true_return,-51.86723940860247,-65.66445158375427,-42.21868246770464,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",23040,true_return,-49.20864387605494,-55.51394984580111,-43.069961505010724,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",25920,true_return,-53.46004511823412,-62.33561001904309,-46.840026144869626,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",28800,true_return,-51.19876194959701,-57.92110386537388,-44.168462911387905,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",31680,true_return,-55.610434412024915,-64.33154319343157,-45.16608932451345,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",34560,true_return,-55.0585087746731,-64.45454559056088,-46.70239501877222,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",37440,true_return,-50.63390048915365,-60.9158820072189,-45.12453058012761,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",40320,true_return,-52.7860632656763,-58.861152085941285,-46.38320760347415,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",43200,true_return,-51.93324783910066,-58.01482771150768,-43.27532538934611,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",46080,true_return,-49.16294062908855,-55.350292682182044,-41.21970547475212,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",48960,true_return,-52.549846935629226,-59.292111215530895,-46.424308533314615,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",51840,true_return,-53.433533407379095,-63.6316245382186,-45.03164100367576,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",54720,true_return,-53.50269568585403,-59.61789476044942,-48.90744897350669,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",57600,true_return,-52.42839579742091,-59.019626412307844,-46.57247769692913,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",60480,true_return,-54.39615895441966,-62.377601737855,-45.43708820064785,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",63360,true_return,-53.81606357451528,-63.635370446019806,-46.237715122057125,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",66240,true_return,-52.91599647733771,-61.295826092828065,-45.47336564143188,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",69120,true_return,-50.7217340314916,-57.846459566266276,-41.60825800453313,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",0,true_return,-54.33296728033262,-59.477052487200126,-49.16978770843707,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",2880,true_return,-54.68670487190442,-62.78836453193799,-46.460320282843895,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",5760,true_return,-50.01476415253516,-58.18058440461755,-42.51007170896628,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",8640,true_return,-52.13622313489517,-59.96081775519997,-41.55253287125379,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",11520,true_return,-49.131317909496524,-57.24461423465982,-41.499856354203075,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",14400,true_return,-51.679512271570275,-56.875123048666865,-46.64030114095658,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",17280,true_return,-49.47155639257593,-52.2876593163237,-45.20949049969204,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",20160,true_return,-47.30827760323882,-59.87299338215962,-41.09647599235177,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",23040,true_return,-48.910747557490446,-55.27100174711086,-43.660912439692765,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",25920,true_return,-49.16268837602305,-58.146410521352664,-42.37858122563921,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",28800,true_return,-49.108753189949006,-56.14799484889954,-41.570962796220556,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",31680,true_return,-51.64574671966451,-58.64808716648258,-44.48890429950552,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",34560,true_return,-48.40456387765395,-56.79291716264561,-41.05382581287995,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",37440,true_return,-47.40325337217655,-57.126484411302954,-40.97313826507889,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",40320,true_return,-50.14478089260714,-56.159281485015526,-43.166906578000635,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",43200,true_return,-48.51831253078611,-55.237669039401226,-42.16420498979278,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",46080,true_return,-46.53778406626467,-51.36713480844628,-43.46201665326953,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",48960,true_return,-49.01102413444702,-53.379974495619535,-44.49682141584344,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",51840,true_return,-50.359652070367396,-58.07066048355773,-44.71282893436728,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",54720,true_return,-51.75911761203315,-57.33314288966358,-45.910662301816046,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",57600,true_return,-53.83789469266776,-62.28210956603289,-45.80384103558026,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",60480,true_return,-51.3316445214538,-55.69322166638449,-43.410446195164695,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",63360,true_return,-47.728183945058845,-54.96539499470964,-43.79980256827548,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",66240,true_return,-48.312617855107725,-55.42769109783694,-42.57184012234211,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",69120,true_return,-47.29075491152859,-53.36416926793754,-40.28985709947301,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",0,true_return,-48.56914774348843,-53.79551857581828,-42.14546711824369,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",2880,true_return,-50.07391977967927,-56.027966236229986,-39.5078202385921,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",5760,true_return,-48.44690047124944,-58.04899419588037,-36.85470053041354,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",8640,true_return,-50.36247988175213,-59.4048703412991,-38.31078769173473,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",11520,true_return,-45.381612019691,-55.385837277863175,-37.59275867952965,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",14400,true_return,-47.74071426140532,-54.52625237312168,-42.24473856377881,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",17280,true_return,-46.030032136225294,-53.01975921029225,-41.63815381890163,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",20160,true_return,-45.501603719700746,-52.52531002042815,-38.39550538652111,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",23040,true_return,-42.71429356388884,-48.664547865628265,-38.45263921818696,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",25920,true_return,-48.31743880761011,-54.646268620854244,-41.59453805006342,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",28800,true_return,-44.81380347769785,-50.1594462422654,-38.26532085350482,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",31680,true_return,-48.37459534641433,-56.86613163584843,-38.72355701751076,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",34560,true_return,-45.62323742262864,-54.04405146022327,-37.57042798947077,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",37440,true_return,-44.46078889370741,-56.24531259119976,-38.27705428516492,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",40320,true_return,-46.499894682162754,-54.0992028452456,-38.46395867969841,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",43200,true_return,-45.87106023558105,-53.78178060648497,-40.44293553312309,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",46080,true_return,-43.63796581652908,-50.15235594660044,-37.242619740369264,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",48960,true_return,-46.79556012978234,-51.46286695240997,-39.93625306698959,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",51840,true_return,-47.64655283660007,-53.19714447314618,-40.341757943620905,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",54720,true_return,-48.154513787536416,-53.84469635318965,-43.07532190089114,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",57600,true_return,-48.92462789680576,-55.68672736664303,-43.543752682278864,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",60480,true_return,-47.41775352061571,-54.61531491717324,-40.87952087679878,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",63360,true_return,-45.79940392670687,-53.9906342868926,-40.9679029986728,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",66240,true_return,-45.899755398083165,-50.711298181442544,-40.72800072224345,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",69120,true_return,-44.6229876333285,-49.92670052382164,-37.66766210296191,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",0,mean_distance,0.6452313342394246,0.5586749070319043,0.7320566912194102,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",2880,mean_distance,0.5952233847439673,0.5085014958413515,0.6789644024614664,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",5760,mean_distance,0.5981250085816909,0.5015951368850621,0.6778057434814806,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",8640,mean_distance,0.6307421025331068,0.5065919746622368,0.741097897700573,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",11520,mean_distance,0.5687653194458124,0.47225609130547885,0.6560957812847494,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",14400,mean_distance,0.6336203013676409,0.5639252635645396,0.7238114977491437,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",17280,mean_distance,0.6117602916281536,0.5502355154953211,0.6611489452742607,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",20160,mean_distance,0.6057793477047907,0.4863798223872911,0.7865825339227766,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",23040,mean_distance,0.5731939183465834,0.5104913269763082,0.6490260905015218,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",25920,mean_distance,0.6207579063094862,0.5560564683053292,0.708181228847569,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",28800,mean_distance,0.586460584557526,0.5171845250891814,0.6635081994703593,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",31680,mean_distance,0.6499912995108187,0.5328451980420921,0.7551768626642162,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",34560,mean_distance,0.6381844793062952,0.535537087887897,0.7627700366137782,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",37440,mean_distance,0.5851696466702957,0.5122350596485066,0.7166736302574737,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",40320,mean_distance,0.6204720256926337,0.5411426037956493,0.7019290305636143,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",43200,mean_distance,0.596956795960081,0.4982076916725376,0.6807803889701161,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",46080,mean_distance,0.5563804865550487,0.4675845918932289,0.6223882917943213,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",48960,mean_distance,0.6138102877607591,0.5557407239962093,0.693440327486524,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",51840,mean_distance,0.6122588680171207,0.5236750280137408,0.7438905319271181,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",54720,mean_distance,0.6237209218851427,0.5706023096074379,0.6867793259723473,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",57600,mean_distance,0.6050882476619667,0.5456030882217806,0.6756000567481599,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",60480,mean_distance,0.6461585045254928,0.5180154375319362,0.7383442965096465,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",63360,mean_distance,0.6160292191095177,0.5388514339941984,0.7350755668975637,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",66240,mean_distance,0.6133117178285777,0.5248869058661304,0.6879722818060505,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",69120,mean_distance,0.589232232582038,0.486179419012967,0.7039782441377939,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",0,mean_distance,0.6344201696475646,0.5523881036480471,0.7050314658034321,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",2880,mean_distance,0.6283599035992835,0.5085180253773608,0.728178748303538,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",5760,mean_distance,0.5792131605044902,0.4822426931637761,0.6788024703299349,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",8640,mean_distance,0.6088519142424192,0.4791134613036809,0.6873739132486779,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",11520,mean_distance,0.5658077826758657,0.4801176368595755,0.6561659415450142,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",14400,mean_distance,0.5935339109198366,0.5302914347609176,0.6214541305444854,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",17280,mean_distance,0.5624373155305648,0.515771241660436,0.604319242735893,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",20160,mean_distance,0.5558695376683859,0.48114206230237444,0.6975784269486403,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",23040,mean_distance,0.563905562366325,0.49613419969880057,0.637172504408291,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",25920,mean_distance,0.56970290732319,0.5030288335954293,0.689922699489784,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",28800,mean_distance,0.5604838386852765,0.46504700378390135,0.6439441865555311,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",31680,mean_distance,0.6043512324501961,0.5294797959789981,0.69390706545305,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",34560,mean_distance,0.5664492475613979,0.4747093824150695,0.6530232488815092,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",37440,mean_distance,0.547452649018005,0.4695340960955168,0.6525795035587572,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",40320,mean_distance,0.5894621561638825,0.504089640697705,0.6631257094719171,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",43200,mean_distance,0.565595152180712,0.4792522553136368,0.6664914109662781,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",46080,mean_distance,0.529551882068313,0.4820483654553901,0.5801872369233498,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",48960,mean_distance,0.5726348111560707,0.49592177567808204,0.6289918731408977,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",51840,mean_distance,0.5767801263799742,0.5117250553948008,0.669842283169644,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",54720,mean_distance,0.5986480517528102,0.5079266542452231,0.6669682231044926,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",57600,mean_distance,0.6224975956542457,0.5287124051931589,0.7044260294124898,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",60480,mean_distance,0.5911480845821914,0.5234957248569292,0.6467777185794843,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",63360,mean_distance,0.5564762791714981,0.4963652553099595,0.6354172318223226,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",66240,mean_distance,0.5580624197617071,0.48796466231560714,0.636647977403778,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",69120,mean_distance,0.5523270993467668,0.4656633569105614,0.6222964906362807,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",0,mean_distance,0.5717066273292876,0.508969118263966,0.6264413262727742,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",2880,mean_distance,0.5816481121370617,0.4438473068479024,0.6500017763641373,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",5760,mean_distance,0.556888225108172,0.4285430294234132,0.6711462387395482,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",8640,mean_distance,0.5795952052027629,0.4329096055661836,0.7156682161381777,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",11520,mean_distance,0.5144620473753522,0.44213898562903003,0.6199603604491144,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",14400,mean_distance,0.5426857241943154,0.478195174206961,0.623260437863287,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",17280,mean_distance,0.5242509751464226,0.4663653473724765,0.5843383379567793,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",20160,mean_distance,0.532122432740079,0.43484197425376975,0.6137273816774333,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",23040,mean_distance,0.49298970985434165,0.461914814059084,0.5619952139737427,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",25920,mean_distance,0.5627144351327253,0.48733299361422117,0.6393505719034962,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",28800,mean_distance,0.5135249615160743,0.4260031458773842,0.5716821811436977,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",31680,mean_distance,0.561543626546817,0.4507932051208041,0.6523137961744302,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",34560,mean_distance,0.5336034377123402,0.44179046138901606,0.6480232921789176,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",37440,mean_distance,0.5129074676750182,0.44114810329279014,0.6230485685567567,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",40320,mean_distance,0.5466710505032875,0.4633966082011361,0.6196768723531918,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",43200,mean_distance,0.5300378676943328,0.46329677361699295,0.6151062305298507,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",46080,mean_distance,0.4946474096760025,0.4174075847798491,0.5729621382366927,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",48960,mean_distance,0.5464311880186803,0.4837440625642335,0.5779954847919468,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",51840,mean_distance,0.5480490272668542,0.4657147769567185,0.5977843778025694,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",54720,mean_distance,0.5608162259275506,0.47351521163271076,0.622931352173334,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",57600,mean_distance,0.5662997944810854,0.4982801085228272,0.6428320377475978,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",60480,mean_distance,0.5504456456652833,0.46906496412742976,0.6471264173008021,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",63360,mean_distance,0.5305616677212952,0.4735313325251187,0.6244157434170536,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",66240,mean_distance,0.5329742045966159,0.47126275526197325,0.5957331598628846,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",69120,mean_distance,0.5225613019305356,0.438028055918443,0.5784657814035036,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",0,success,0.0,0.0,0.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",2880,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",5760,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",8640,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",11520,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",14400,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",17280,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",20160,success,0.4166666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",23040,success,0.5833333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",25920,success,0.4166666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",28800,success,0.4166666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",31680,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",34560,success,0.0,0.0,0.25,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",37440,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",40320,success,0.4166666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",43200,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",46080,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",48960,success,0.3333333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",51840,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",54720,success,0.5833333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",57600,success,0.625,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",60480,success,0.3333333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",63360,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",66240,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,unseen,Unseen delay,"(0-40,0-40)",69120,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",0,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",2880,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",5760,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",8640,success,0.0,0.0,0.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",11520,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",14400,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",17280,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",20160,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",23040,success,0.0,0.0,0.25,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",25920,success,0.0,0.0,0.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",28800,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",31680,success,0.0,0.0,0.25,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",34560,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",37440,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",40320,success,0.2916666666666667,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",43200,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",46080,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",48960,success,0.0,0.0,0.25,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",51840,success,0.3333333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",54720,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",57600,success,0.375,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",60480,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",63360,success,0.5,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",66240,success,0.3333333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action,Augmented (+action buffer),"(0-40,0-40)",69120,success,0.4583333333333333,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",0,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",2880,success,0.5833333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",5760,success,0.625,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",8640,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",11520,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",14400,success,0.5833333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",17280,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",20160,success,0.7083333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",23040,success,0.6666666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",25920,success,0.6666666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",28800,success,0.6666666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",31680,success,0.7083333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",34560,success,0.6666666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",37440,success,1.0,0.75,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",40320,success,1.0,0.75,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",43200,success,0.6666666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",46080,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",48960,success,0.5416666666666666,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",51840,success,0.7083333333333334,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",54720,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",57600,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",60480,success,0.625,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",63360,success,1.0,1.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",66240,success,0.625,0.0,1.0,24
+stochastic_0_40,"(0-40,0-40)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0-40,0-40)",69120,success,0.5833333333333334,0.0,1.0,24

@@ -1,0 +1,21 @@
+env_id,variant,variant_label,seed,delay,steps,success_rate,return_mean,return_std,episode_len_mean
+FetchReachDense-v2,unseen,Unseen delay,0,10,1000,0.0,-14.821868106253385,5.375483636280932,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,2000,0.0,-13.181978927412018,5.590243698950435,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,3000,0.0,-16.126242462845443,5.195284910296459,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,4000,0.0,-15.49737863590563,4.804117964742469,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,5000,0.0,-15.983660156240806,8.374258824130845,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,6000,0.0,-14.372565753968676,5.1952592772452215,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,7000,0.0,-17.228062213992267,4.468915643660189,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,8000,0.0,-12.021914217009932,4.55445112445038,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,9000,0.0,-22.169180965910897,7.03310287086491,60.0
+FetchReachDense-v2,unseen,Unseen delay,0,10,10000,0.0,-18.613892442388313,6.735701339528579,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,1000,0.0,-15.125724662096019,6.097016147115081,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,2000,0.1,-11.74339085043627,4.413562412553289,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,3000,0.0,-14.853116062879142,4.95314992107735,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,4000,0.0,-15.73863138590995,4.009809360564773,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,5000,0.0,-15.355050285846357,4.599159139358134,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,6000,0.0,-16.15514599502166,4.878654619159526,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,7000,0.0,-18.168373265923286,7.234948898570988,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,8000,0.1,-12.315940078253192,3.982222483675786,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,9000,0.0,-16.299148396106073,5.183003895234036,60.0
+FetchReachDense-v2,augmented_action,Augmented (+action buffer),0,10,10000,0.0,-17.12990453743219,4.606454273136011,60.0

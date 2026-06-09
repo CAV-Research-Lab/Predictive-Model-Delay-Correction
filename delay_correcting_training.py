@@ -1,5 +1,6 @@
 import argparse
 import csv
+import os
 import random
 from dataclasses import dataclass
 from pathlib import Path
@@ -82,6 +83,19 @@ class TensorboardCallback(BaseCallback):
         if episode_tracking is not None:
             self.logger.record("track/episode_reward", episode_tracking)
 
+        wm_loss = self._find_attr(("wm_loss",))
+        wm_pred_err = self._find_attr(("wm_pred_err",))
+        if wm_loss is not None:
+            self.logger.record("wm/ensemble_loss", wm_loss)
+        if wm_pred_err is not None:
+            self.logger.record("wm/pred_err", wm_pred_err)
+        wm_dis = self._find_attr(("wm_disagreement",))
+        wm_opt = self._find_attr(("wm_reward_opt",))
+        if wm_dis is not None:
+            self.logger.record("wm/disagreement", wm_dis)
+        if wm_opt is not None:
+            self.logger.record("wm/reward_opt", wm_opt)
+
         if self.csv_path and self.n_calls % self.record_freq == 0:
             self.rows.append(
                 {
@@ -112,6 +126,40 @@ class TensorboardCallback(BaseCallback):
                     return getattr(env, name)
             env = getattr(env, "env", None)
         return None
+
+
+def _init_wandb(cfg, algorithm, env_id, delay_config, seed, n_models, steps):
+    """Start a W&B run that mirrors all TensorBoard scalars (track/*, wm/*, train/*) via
+    sync_tensorboard. pred_mode is folded into method/run-name so ABSP and SBSP -- both
+    algorithm=='PMDC' -- are distinguishable in W&B."""
+    import wandb
+
+    pred_mode = os.environ.get("PMDC_PRED_MODE", "sbsp").lower() if algorithm == "PMDC" else "n/a"
+    method = f"PMDC-{pred_mode}" if algorithm == "PMDC" else algorithm
+    safe_env = env_id.replace("/", "_")
+    return wandb.init(
+        project=cfg["project"],
+        entity=cfg.get("entity"),
+        mode=cfg.get("mode", "online"),
+        group=cfg.get("group") or f"{safe_env}_{delay_config.label}",
+        name=f"{method} {delay_config.label} seed{seed}",
+        reinit=True,
+        sync_tensorboard=True,
+        config={
+            "algorithm": algorithm,
+            "method": method,
+            "pred_mode": pred_mode,
+            "env_id": env_id,
+            "seed": seed,
+            "delay": delay_config.label,
+            "act_delay": delay_config.act_delay,
+            "steps": steps,
+            "n_models": n_models,
+            "gamma": float(os.environ.get("PMDC_SAC_GAMMA", "0.99")),
+            "target_entropy": os.environ.get("PMDC_SAC_TENT", "auto"),
+            "fix_prevobs": os.environ.get("PMDC_FIX_PREVOBS", "0"),
+        },
+    )
 
 
 def seed_everything(seed):
@@ -199,6 +247,7 @@ def train(
     operator_model=None,
     output_dir=".",
     skip_existing=False,
+    wandb_cfg=None,
 ):
     seed_everything(seed)
     output_dir = Path(output_dir)
@@ -220,18 +269,32 @@ def train(
 
     model_dir.mkdir(parents=True, exist_ok=True)
     tensorboard_log = output_dir / "pred_logs" / algorithm / settings / delay_config.label / f"seed_{seed}"
+    wandb_run = _init_wandb(wandb_cfg, algorithm, env_id, delay_config, seed, n_models, steps) if wandb_cfg else None
+    _ent = os.environ.get("PMDC_SAC_ENT", "auto")
+    _tent = os.environ.get("PMDC_SAC_TENT", "auto")
     model = SAC(
         "MlpPolicy",
         env,
         verbose=0,
         tensorboard_log=str(tensorboard_log),
-        buffer_size=20_000,
+        buffer_size=int(os.environ.get("PMDC_SAC_BUFFER", "20000")),
+        learning_rate=float(os.environ.get("PMDC_SAC_LR", "0.0003")),
+        gamma=float(os.environ.get("PMDC_SAC_GAMMA", "0.99")),
+        ent_coef=(_ent if _ent.startswith("auto") else float(_ent)),
+        target_entropy=("auto" if _tent == "auto" else float(_tent)),
         device=device,
-        learning_starts=20_000,
+        learning_starts=int(os.environ.get("PMDC_SAC_LSTART", "20000")),
     )
-    model.learn(total_timesteps=steps, log_interval=1, callback=TensorboardCallback(env=env, csv_path=csv_path))
+    callback = TensorboardCallback(env=env, csv_path=csv_path)
+    if wandb_run is not None:
+        from wandb.integration.sb3 import WandbCallback
+        from stable_baselines3.common.callbacks import CallbackList
+        callback = CallbackList([callback, WandbCallback(verbose=0)])
+    model.learn(total_timesteps=steps, log_interval=1, callback=callback)
     model.save(str(model_path))
     env.close()
+    if wandb_run is not None:
+        wandb_run.finish()
     return model_path
 
 
@@ -253,11 +316,24 @@ def build_parser():
     parser.add_argument("--operator-model", default=None, help="Path to the trained operator SAC checkpoint.")
     parser.add_argument("--output-dir", default=".")
     parser.add_argument("--skip-existing", action="store_true")
+    parser.add_argument("--wandb", action="store_true", help="log to Weights & Biases (syncs all TB scalars)")
+    parser.add_argument("--wandb-project", default="pmdc-delay-comparison")
+    parser.add_argument("--wandb-entity", default=None)
+    parser.add_argument("--wandb-mode", default="online", choices=["online", "offline", "disabled"])
+    parser.add_argument("--wandb-group", default=None, help="W&B group (default: <env>_<delay>)")
     return parser
 
 
 def main():
     args = build_parser().parse_args()
+    wandb_cfg = None
+    if args.wandb:
+        wandb_cfg = {
+            "project": args.wandb_project,
+            "entity": args.wandb_entity,
+            "mode": args.wandb_mode,
+            "group": args.wandb_group,
+        }
     for delay_config in args.delay_ranges:
         for algorithm in args.algorithms:
             train(
@@ -272,6 +348,7 @@ def main():
                 operator_model=args.operator_model,
                 output_dir=args.output_dir,
                 skip_existing=args.skip_existing,
+                wandb_cfg=wandb_cfg,
             )
 
 

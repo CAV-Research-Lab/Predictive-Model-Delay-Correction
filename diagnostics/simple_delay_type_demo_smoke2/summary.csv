@@ -1,0 +1,19 @@
+experiment,variant,variant_label,delay_label,x_value,iqm,q1,q3,n
+constant_sweep,unseen,Unseen delay,"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+constant_sweep,augmented_action,Augmented (+action buffer),"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+constant_sweep,unseen,Unseen delay,"(5,5)",5.0,0.839762131245259,0.8361824321341427,0.8433418303563753,2
+constant_sweep,augmented_action,Augmented (+action buffer),"(5,5)",5.0,0.3777969226299319,0.3629963339900475,0.3925975112698164,2
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(5,5)",5.0,0.3777969226299319,0.3629963339900475,0.3925975112698164,2
+stochastic_sweep,unseen,Unseen delay,"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0)",0.0,0.2651991072947567,0.2530430006623646,0.27735521392714874,2
+stochastic_sweep,unseen,Unseen delay,"(0,0-5)",5.0,0.2880759485496106,0.277342112488667,0.29880978461055413,2
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0-5)",5.0,0.2738257199526099,0.26170880104583794,0.28594263885938187,2
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-5)",5.0,0.27003509709925644,0.25958732035590115,0.2804828738426117,2
+state_constant,unseen,Unseen delay,"(5,5)",5.0,0.839762131245259,0.8361824321341427,0.8433418303563753,2
+state_constant,augmented_action,Augmented (+action buffer),"(5,5)",5.0,0.3777969226299319,0.3629963339900475,0.3925975112698164,2
+state_constant,augmented_action_delay,Augmented (+action buffer + delay values),"(5,5)",5.0,0.3777969226299319,0.3629963339900475,0.3925975112698164,2
+state_stochastic,unseen,Unseen delay,"(0,0-5)",5.0,0.2880759485496106,0.277342112488667,0.29880978461055413,2
+state_stochastic,augmented_action,Augmented (+action buffer),"(0,0-5)",5.0,0.2738257199526099,0.26170880104583794,0.28594263885938187,2
+state_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-5)",5.0,0.27003509709925644,0.25958732035590115,0.2804828738426117,2

@@ -1,0 +1,40 @@
+experiment,experiment_label,condition_id,condition_label,delay_family,variant,variant_label,delay_label,train_steps,metric,iqm,q1,q3,n
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",200,true_return,-210.92912578582764,-210.92912578582764,-210.92912578582764,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",200,true_return,-200.8149824142456,-200.8149824142456,-200.8149824142456,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",200,true_return,-209.0097315311432,-209.0097315311432,-209.0097315311432,1
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",200,true_return,-231.63258290290833,-231.63258290290833,-231.63258290290833,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",200,true_return,-231.89879512786865,-231.89879512786865,-231.89879512786865,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",200,true_return,-207.7907279729843,-207.7907279729843,-207.7907279729843,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",200,true_return,-227.20059370994568,-227.20059370994568,-227.20059370994568,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",200,true_return,-122.37644183635712,-122.37644183635712,-122.37644183635712,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",200,true_return,-181.1147861480713,-181.1147861480713,-181.1147861480713,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",200,true_return,-130.3165522813797,-130.3165522813797,-130.3165522813797,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",200,true_return,-209.67291855812073,-209.67291855812073,-209.67291855812073,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",200,true_return,-185.2167363166809,-185.2167363166809,-185.2167363166809,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",200,true_return,-119.631163418293,-119.631163418293,-119.631163418293,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",200,mean_distance,2.3436569531758624,2.3436569531758624,2.3436569531758624,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",200,mean_distance,2.231277582380507,2.231277582380507,2.231277582380507,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",200,mean_distance,2.3223303503460353,2.3223303503460353,2.3223303503460353,1
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",200,mean_distance,2.438237714767456,2.438237714767456,2.438237714767456,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",200,mean_distance,2.3189879512786864,2.3189879512786864,2.3189879512786864,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",200,mean_distance,2.077907279729843,2.077907279729843,2.077907279729843,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",200,mean_distance,2.2720059370994568,2.2720059370994568,2.2720059370994568,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",200,mean_distance,1.4923956321506966,1.4923956321506966,1.4923956321506966,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",200,mean_distance,2.208716904244772,2.208716904244772,2.208716904244772,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",200,mean_distance,1.5892262473338987,1.5892262473338987,1.5892262473338987,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",200,mean_distance,2.556986811684399,2.556986811684399,2.556986811684399,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",200,mean_distance,2.2587406867887916,2.2587406867887916,2.2587406867887916,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",200,mean_distance,1.4589166270523537,1.4589166270523537,1.4589166270523537,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",200,success,0.0,0.0,0.0,1
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",200,success,0.0,0.0,0.0,1
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",200,success,0.0,0.0,0.0,1

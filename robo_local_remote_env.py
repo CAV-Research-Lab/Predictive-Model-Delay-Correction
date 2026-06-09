@@ -100,7 +100,28 @@ def operator_model_path(env_id, operator_model=None):
     return models[env_id]
 
 
+def _format_obs_reach(r_obs, o_obs):
+    """FetchReach (10-dim, object-free) local-remote formatter.
+
+    Emits the SAME 22-dim layout as the 25-dim Fetch tasks so the PMDC reward/recalibration
+    indices ([0:3] = remote end-effector, [11:14] = operator end-effector) and the 22-dim
+    observation space are unchanged -- no edits needed in PMDC_wrapper. Each arm contributes
+    its full 10-dim FetchReach obs plus one pad dim, filling the 11 slots the object occupies
+    in the standard layout.
+    """
+    r = r_obs['observation']  # [grip_pos(3), gripper_state(2), grip_velp(3), gripper_vel(2)]
+    o = o_obs['observation']
+    pad = np.zeros(1, dtype=r.dtype)
+    r_obs['observation'] = np.concatenate([r[0:10], pad, o[0:10], pad]).astype(np.float32)
+    r_obs['achieved_goal'] = r_obs['observation'][[0, 1, 2]].astype(np.float32)   # remote EE
+    r_obs['desired_goal'] = o[[0, 1, 2]].astype(np.float32)                       # operator EE
+    return r_obs
+
+
 def format_obs(r_obs, o_obs):
+    if r_obs['observation'].shape[0] == 10:  # FetchReach: object-free 10-dim layout
+        return _format_obs_reach(r_obs, o_obs)
+
     def delete_idxs(a, idxs):
         for i in idxs:
             a = np.append(a[:i], a[i + 1:])
@@ -225,13 +246,15 @@ class REnvDirectControl(REnvPDNormObs):
         return self.r_obs["observation"], float(reward), r_term, r_trunc, {"operator_reward": o_rew}
 
 
-# Local-remote variants. Any Fetch task with the SAME 25-dim obs / 4-dim action layout as
-# FetchPush works unchanged because format_obs() slices fixed indices: FetchPush, FetchSlide,
-# FetchPickAndPlace all share that layout. FetchReach (10-dim, no object) would NOT work here.
+# Local-remote variants. The 25-dim/4-dim object tasks (FetchPush, FetchSlide,
+# FetchPickAndPlace) share one format_obs() index layout; FetchReach (10-dim, no object) is
+# handled by the _format_obs_reach() branch, which emits the same 22-dim formatted layout so
+# the rest of the pipeline (PMDC reward indices, obs space) is unchanged.
 LOCAL_REMOTE_ENVS = {
     "FetchPush-RemotePDNorm-v0": "FetchPush-v2",
     "FetchSlide-RemotePDNorm-v0": "FetchSlide-v2",
     "FetchPickAndPlace-RemotePDNorm-v0": "FetchPickAndPlace-v2",
+    "FetchReach-RemotePDNorm-v0": "FetchReach-v2",
 }
 
 DIRECT_LOCAL_REMOTE_ENVS = {

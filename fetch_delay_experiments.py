@@ -64,6 +64,9 @@ RESULT_FIELDNAMES = (
     "episode_return",
     "episode_mean_reward",
     "episode_mean_distance",
+    "episode_final_goal_distance",
+    "episode_min_goal_distance",
+    "episode_success",
     "model_path",
 )
 
@@ -72,6 +75,9 @@ NUMERIC_COLUMNS = (
     "episode_return",
     "episode_mean_reward",
     "episode_mean_distance",
+    "episode_final_goal_distance",
+    "episode_min_goal_distance",
+    "episode_success",
 )
 
 EXPERIMENTS = (
@@ -211,6 +217,20 @@ def iqm(values):
     return mean(middle or values)
 
 
+def goal_distance_from_fetch_env(env):
+    """Return current Fetch achieved-goal distance when the wrapped env exposes it."""
+    getter = getattr(env.unwrapped, "_get_obs", None)
+    if getter is None:
+        return math.nan
+    try:
+        obs = getter()
+        achieved = np.asarray(obs["achieved_goal"], dtype=float)
+        desired = np.asarray(obs["desired_goal"], dtype=float)
+    except Exception:
+        return math.nan
+    return float(np.linalg.norm(achieved - desired))
+
+
 def default_wandb_group(args):
     seeds = "-".join(str(seed) for seed in args.seeds)
     return f"{short_env(args.env_id)}-{args.steps}steps-{args.n_eval_episodes}evaleps-seeds{seeds}"
@@ -301,6 +321,10 @@ def write_wandb_marker(path, payload, args):
 def summarize_eval_rows(rows):
     values = {column: [safe_float(row.get(column)) for row in rows] for column in NUMERIC_COLUMNS}
     distances = values["episode_mean_distance"]
+    final_goal_distances = values["episode_final_goal_distance"]
+    min_goal_distances = values["episode_min_goal_distance"]
+    successes = values["episode_success"]
+    success_distances = final_goal_distances if finite(final_goal_distances) else distances
     returns = values["episode_return"]
     return {
         "eval/episode_count": len(rows),
@@ -314,8 +338,13 @@ def summarize_eval_rows(rows):
         "eval/episode_mean_distance_iqm": iqm(distances),
         "eval/episode_mean_distance_q1": quantile(distances, 0.25),
         "eval/episode_mean_distance_q3": quantile(distances, 0.75),
-        "eval/success_rate_5cm": mean([1.0 if value <= 0.05 else 0.0 for value in finite(distances)]),
-        "eval/success_rate_2cm": mean([1.0 if value <= 0.02 else 0.0 for value in finite(distances)]),
+        "eval/episode_final_goal_distance_mean": mean(final_goal_distances),
+        "eval/episode_final_goal_distance_iqm": iqm(final_goal_distances),
+        "eval/episode_min_goal_distance_mean": mean(min_goal_distances),
+        "eval/episode_min_goal_distance_iqm": iqm(min_goal_distances),
+        "eval/success_rate": mean(successes),
+        "eval/success_rate_5cm": mean([1.0 if value <= 0.05 else 0.0 for value in finite(success_distances)]),
+        "eval/success_rate_2cm": mean([1.0 if value <= 0.02 else 0.0 for value in finite(success_distances)]),
     }
 
 
@@ -885,12 +914,22 @@ def evaluate_model(args, spec, eval_spec, seed, model_path):
         obs, _ = env.reset(seed=eval_seed + episode)
         terminated = truncated = False
         rewards = []
+        goal_distances = []
+        successes = []
         while not (terminated or truncated):
             action, _ = model.predict(obs, deterministic=True)
-            obs, reward, terminated, truncated, _ = env.step(action)
+            obs, reward, terminated, truncated, info = env.step(action)
             rewards.append(float(reward))
+            goal_distance = goal_distance_from_fetch_env(env)
+            if math.isfinite(goal_distance):
+                goal_distances.append(goal_distance)
+            success = safe_float(info.get("is_success") if isinstance(info, dict) else None)
+            if math.isfinite(success):
+                successes.append(success)
 
         rewards_arr = np.asarray(rewards, dtype=float)
+        finite_goal_distances = finite(goal_distances)
+        mean_distance = mean(finite_goal_distances) if finite_goal_distances else float(-np.mean(rewards_arr))
         rows.append(
             {
                 "env_id": args.env_id,
@@ -912,7 +951,10 @@ def evaluate_model(args, spec, eval_spec, seed, model_path):
                 "episode_steps": len(rewards),
                 "episode_return": float(np.sum(rewards_arr)),
                 "episode_mean_reward": float(np.mean(rewards_arr)),
-                "episode_mean_distance": float(-np.mean(rewards_arr)),
+                "episode_mean_distance": mean_distance,
+                "episode_final_goal_distance": finite_goal_distances[-1] if finite_goal_distances else math.nan,
+                "episode_min_goal_distance": min(finite_goal_distances) if finite_goal_distances else math.nan,
+                "episode_success": successes[-1] if successes else math.nan,
                 "model_path": str(model_path),
             }
         )

@@ -1,0 +1,391 @@
+experiment,experiment_label,condition_id,condition_label,delay_family,variant,variant_label,delay_label,train_steps,metric,iqm,q1,q3,n
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",1000,true_return,-181.0779381195704,-185.64457058906555,-178.70026671886444,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",2000,true_return,-218.72801518440247,-227.43270683288574,-211.23232555389404,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",3000,true_return,-185.93725744883218,-187.73689341545105,-184.0308120250702,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",4000,true_return,-177.00088651974997,-181.19274139404297,-174.3879590034485,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",5000,true_return,-205.0731950600942,-212.2306523323059,-200.7746901512146,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",6000,true_return,-209.70725003878275,-218.46496534347534,-201.35006427764893,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",7000,true_return,-200.78072873751321,-209.16088008880615,-195.08573746681213,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",8000,true_return,-163.0282214085261,-173.38673663139343,-154.44492888450623,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",9000,true_return,-179.34302397569022,-188.8153966665268,-171.1640123128891,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",10000,true_return,-196.68681395053864,-203.5606746673584,-191.39828753471375,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",1000,true_return,-152.9851636091868,-158.87440967559814,-149.14062762260437,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",2000,true_return,-173.13413866360983,-179.2479773759842,-165.99102771282196,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",3000,true_return,-139.7042755484581,-139.88815885782242,-139.44999408721924,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",4000,true_return,-193.39613342285156,-195.0027197599411,-191.71490716934204,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",5000,true_return,-242.18746387958527,-245.02097404003143,-238.24181866645813,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",6000,true_return,-292.6838007767995,-305.6323142051697,-271.26267898082733,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",7000,true_return,-242.4805156389872,-247.07601988315582,-237.02196621894836,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",8000,true_return,-220.93143574396768,-223.93310379981995,-217.45545172691345,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",9000,true_return,-150.30810089906058,-151.71439558267593,-149.22390323877335,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",10000,true_return,-104.6265512406826,-108.51638974249363,-98.36190570890903,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",1000,true_return,-175.07510856787363,-181.19962084293365,-170.08622813224792,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",2000,true_return,-136.35397855440775,-148.0075603723526,-125.6524509191513,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",3000,true_return,-310.4242813587189,-323.0172312259674,-304.112833738327,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",4000,true_return,-108.01592284440994,-141.69648575782776,-87.99609154462814,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",5000,true_return,-394.1082058747609,-405.22608852386475,-382.2745475769043,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",6000,true_return,-290.07978264490765,-301.6326916217804,-276.55629205703735,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",7000,true_return,-111.77597349882126,-118.88819342851639,-107.22735637426376,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",8000,true_return,-188.50988388061523,-202.9253910779953,-173.20293855667114,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",9000,true_return,-112.41027571757634,-121.95035797357559,-106.05091434717178,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",10000,true_return,-103.63237635294597,-105.83725708723068,-102.45300191640854,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",1000,true_return,-187.74637039502463,-192.75691747665405,-185.0193088054657,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",2000,true_return,-219.82869092623392,-226.86742496490479,-212.15912079811096,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",3000,true_return,-216.0914097627004,-219.10801196098328,-212.21924114227295,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",4000,true_return,-266.96188755830127,-271.641237616539,-262.1432662010193,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",5000,true_return,-316.2813692887624,-318.36659264564514,-313.43486404418945,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",6000,true_return,-260.7328100204468,-273.1384108066559,-254.0468807220459,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",7000,true_return,-251.665354291598,-266.22158455848694,-241.26832616329193,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",8000,true_return,-269.48997616767883,-275.14745593070984,-262.79082322120667,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",9000,true_return,-327.4556284745534,-337.5252673625946,-319.17647337913513,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",10000,true_return,-308.65965700149536,-311.0520851612091,-306.40133810043335,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",1000,true_return,-224.40586948394775,-230.0509648323059,-221.51072072982788,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",2000,true_return,-188.80434171358743,-193.2749924659729,-182.24167156219482,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",3000,true_return,-235.11027805010477,-239.46327471733093,-228.9643313884735,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",4000,true_return,-288.86279388268787,-295.2322573661804,-282.26796996593475,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",5000,true_return,-253.9711852868398,-259.3995716571808,-246.59050750732422,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",6000,true_return,-255.2972802321116,-265.5437695980072,-247.5546350479126,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",7000,true_return,-272.05472898483276,-281.7368242740631,-265.2761631011963,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",8000,true_return,-209.35300286610922,-211.06838274002075,-207.72432386875153,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",9000,true_return,-305.11204040050507,-327.71492528915405,-281.5593719482422,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",10000,true_return,-226.56857736905417,-235.0717694759369,-218.60071659088135,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",1000,true_return,-216.53712582588196,-223.43295454978943,-211.78450465202332,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",2000,true_return,-252.7846683661143,-265.2328541278839,-241.9852991104126,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",3000,true_return,-166.6477079987526,-168.73762691020966,-163.96974384784698,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",4000,true_return,-154.39915929238,-159.76094615459442,-144.28671860694885,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",5000,true_return,-202.33941785494486,-205.94008207321167,-197.54142999649048,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",6000,true_return,-241.04066729545593,-251.81181573867798,-227.65104126930237,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",7000,true_return,-230.1034553448359,-232.08245706558228,-226.60015738010406,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",8000,true_return,-168.122811516126,-177.7970689535141,-161.43607932329178,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",9000,true_return,-181.83114230632782,-194.4251368045807,-171.47086095809937,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",10000,true_return,-153.06349420547485,-158.65158474445343,-149.54824525117874,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",1000,true_return,-194.5325607061386,-202.21294260025024,-188.9925810098648,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",2000,true_return,-282.76890540122986,-304.09547114372253,-254.18332719802856,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",3000,true_return,-277.4050243695577,-305.8317542076111,-260.5731039047241,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",4000,true_return,-423.72386968135834,-431.79704773426056,-419.30156564712524,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",5000,true_return,-305.2998723189036,-353.8314301967621,-268.79034900665283,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",6000,true_return,-185.32592089722553,-186.65061758458614,-183.7670130059123,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",7000,true_return,-186.07568304861584,-188.74780064076185,-182.43075662478805,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",8000,true_return,-152.69344351192316,-160.84709306061268,-140.1077906191349,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",9000,true_return,-166.81450218893588,-172.70713786780834,-157.6187152247876,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",10000,true_return,-181.62567204112807,-185.1811993457377,-177.3741237744689,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",1000,true_return,-89.9674044450124,-93.32807284593582,-83.77158135175705,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",2000,true_return,-132.5564582745234,-138.77213883399963,-128.5358021259308,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",3000,true_return,-158.28979210058847,-165.65510833263397,-153.78809535503387,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",4000,true_return,-169.30772531032562,-172.11595034599304,-165.8746600151062,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",5000,true_return,-141.81246929367384,-149.9423616528511,-130.8454391658306,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",6000,true_return,-189.40358316898346,-196.95289063453674,-178.02460038661957,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",7000,true_return,-159.48857415715852,-176.03229582309723,-140.31128761172295,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",8000,true_return,-93.15506236255169,-99.30985045433044,-87.5773978382349,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",9000,true_return,-77.71468190352122,-85.49786779284477,-69.88268610835075,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",10000,true_return,-63.628512144088745,-68.18660083413124,-58.167306780815125,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",1000,true_return,-167.8356286684672,-175.07814836502075,-158.45793986320496,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",2000,true_return,-181.38919925689697,-190.42049944400787,-172.51451110839844,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",3000,true_return,-202.7764449516932,-206.81823337078094,-196.50190436840057,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",4000,true_return,-89.27708319822948,-91.71253508329391,-86.56754365563393,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",5000,true_return,-136.38619105021158,-138.37133657932281,-132.67035925388336,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",6000,true_return,-119.63936338822047,-127.00937211513519,-112.13950151205063,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",7000,true_return,-102.42937038342158,-105.41729986667633,-98.613132417202,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",8000,true_return,-135.58509421348572,-148.60797560214996,-128.86997961997986,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",9000,true_return,-83.17729985713959,-91.01965373754501,-69.0169130563736,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",10000,true_return,-72.52038525541623,-74.07255747914314,-70.58364471793175,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",1000,true_return,-123.16015323003133,-126.33895015716553,-117.86749243736267,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",2000,true_return,-108.21986758708954,-110.50518822669983,-105.20001995563507,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",3000,true_return,-105.80990678071976,-113.60773926973343,-97.45766192674637,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",4000,true_return,-98.41447869936626,-102.96973317861557,-91.7473316192627,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",5000,true_return,-98.33890235424042,-100.74692630767822,-93.60411250591278,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",6000,true_return,-76.47565038005511,-78.63912308216095,-72.35624104738235,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",7000,true_return,-97.01761901378632,-98.08899858593941,-95.73150816559792,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",8000,true_return,-121.52000073591869,-127.72852849960327,-117.20075905323029,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",9000,true_return,-123.73807452122371,-128.28516572713852,-121.00924652814865,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",10000,true_return,-73.80239363511403,-76.85914987325668,-71.64041352272034,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",1000,true_return,-182.0100073814392,-188.33016109466553,-175.35675013065338,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",2000,true_return,-204.0020316441854,-223.82123446464539,-192.8570203781128,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",3000,true_return,-161.984712322553,-179.31182527542114,-151.0989397764206,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",4000,true_return,-191.36716457208,-198.63968968391418,-181.6907731294632,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",5000,true_return,-138.41991344094276,-152.9744577407837,-129.41298925876617,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",6000,true_return,-120.20073828101158,-121.52630773186684,-119.44415467977524,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",7000,true_return,-179.3180249532064,-182.62871408462524,-176.79421520233154,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",8000,true_return,-181.29376828670502,-187.5661280155182,-177.80816233158112,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",9000,true_return,-113.55824123819669,-124.0366003215313,-106.27192583680153,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",10000,true_return,-117.71691754708688,-123.46652344614267,-108.88974604010582,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",1000,true_return,-117.12107290824254,-123.41566860675812,-113.25875973701477,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",2000,true_return,-233.39585510889688,-250.9060094356537,-222.41075229644775,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",3000,true_return,-101.03411608934402,-104.52184742689133,-98.14872670173645,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",4000,true_return,-126.2903933574756,-140.34214478731155,-118.45191693305969,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",5000,true_return,-113.05473069349925,-114.07753175497055,-112.48350441455841,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",6000,true_return,-127.61629831790924,-129.1059905588627,-126.5525848865509,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",7000,true_return,-174.80231449007988,-186.13307133316994,-165.5117339193821,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",8000,true_return,-140.8829482446114,-144.9441685974598,-137.66323433816433,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",9000,true_return,-170.32157657916346,-177.18645851314068,-166.17280369997025,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",10000,true_return,-150.00494027137756,-154.00475245714188,-146.9282512664795,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",1000,true_return,-333.7240312099457,-346.69915890693665,-312.4342894554138,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",2000,true_return,-240.50570368766785,-244.04448652267456,-238.19579100608826,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",3000,true_return,-123.81017161284883,-127.75706751272082,-117.36323601007462,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",4000,true_return,-55.85495997220278,-57.76961574703455,-53.85486222803593,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",5000,true_return,-137.3279556632042,-224.37628161907196,-81.30338650941849,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",6000,true_return,-49.83728754023711,-50.88917940855026,-48.77220079302788,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",7000,true_return,-47.02905504653851,-49.94989377260208,-41.759412191808224,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",8000,true_return,-38.88399912044406,-40.979790180921555,-35.53003714233637,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",9000,true_return,-41.023593824356794,-41.328049533069134,-40.518508952111006,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",10000,true_return,-38.99209214001894,-39.869624361395836,-38.55286704748869,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",1000,mean_distance,2.011977090217449,1.9855585190984937,2.0627174509896173,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",2000,mean_distance,2.4303112798266944,2.3470258394877117,2.5270300759209525,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",3000,mean_distance,2.0659695272092464,2.044786800278558,2.0859654823939007,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",4000,mean_distance,1.9666765168861107,1.9376439889272055,2.013252682156033,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",5000,mean_distance,2.2785910562232687,2.230829890569051,2.3581183592478436,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",6000,mean_distance,2.3300805559864752,2.2372229364183216,2.4273885038163927,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",7000,mean_distance,2.230896985972369,2.1676193051868013,2.3240097787645126,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",8000,mean_distance,1.8114246823169566,1.7160547653834024,1.9265192959043715,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",9000,mean_distance,1.9927002663965576,1.901822359032101,2.0979488518502976,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",10000,mean_distance,2.185409043894874,2.126647639274597,2.26178527408176,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",1000,mean_distance,1.6998351512131868,1.6571180846956042,1.7652712186177573,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",2000,mean_distance,1.9237126518178869,1.8443447523646885,1.991644193066491,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",3000,mean_distance,1.552269728316201,1.5494443787468803,1.554312876198027,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",4000,mean_distance,2.148845926920573,2.1301656352149116,2.1666968862215676,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",5000,mean_distance,2.6909718208842808,2.6471313185162013,2.7224552671114606,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",6000,mean_distance,3.2520422308533274,3.014029766453637,3.395914602279663,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",7000,mean_distance,2.6942279515443026,2.6335774024327594,2.7452891098128425,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",8000,mean_distance,2.45479373048853,2.416171685854594,2.488145597775777,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",9000,mean_distance,1.670090009989562,1.6580433693197039,1.6857155064741771,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",10000,mean_distance,1.1625172360075844,1.0929100634323226,1.2057376638054849,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",1000,mean_distance,1.9452789840874847,1.8898469792471992,2.0133291204770405,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",2000,mean_distance,1.5150442061600862,1.3961383435461256,1.6445284485816956,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",3000,mean_distance,3.4491586817635436,3.3790314859814115,3.5890803469551935,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",4000,mean_distance,1.2001769204934438,0.9777343504958682,1.5744053973091974,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",5000,mean_distance,4.378980065275122,4.247494973076714,4.5025120947096084,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",6000,mean_distance,3.2231086960545294,3.072847689522637,3.3514743513531156,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",7000,mean_distance,1.241955261098014,1.191415070825153,1.3209799269835154,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",8000,mean_distance,2.0945542653401694,1.924477095074124,2.254726567533281,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",9000,mean_distance,1.249003063528626,1.1783434927463532,1.3550039774841733,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",10000,mean_distance,1.1514708483660663,1.1383666879600949,1.175969523191452,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",1000,mean_distance,1.9762775831055224,1.947571671636481,2.0290201839647795,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",2000,mean_distance,2.3139862202761465,2.23325390313801,2.3880781575253134,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",3000,mean_distance,2.2746464185547413,2.233886748866031,2.3064001259050873,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",4000,mean_distance,2.810125132192645,2.7594028021159924,2.859381448595147,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",5000,mean_distance,3.3292775714606573,3.299314358359889,3.351227291006791,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",6000,mean_distance,2.7445558949520716,2.6741776918110096,2.8751411663858515,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",7000,mean_distance,2.6491089925431366,2.5396665911925465,2.8023324690367044,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",8000,mean_distance,2.8367365912387243,2.7662191918021755,2.896289009796946,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",9000,mean_distance,3.4469013523637204,3.359752351359317,3.5528975511852066,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",10000,mean_distance,3.249049021068372,3.225277243162456,3.2742324753811487,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",1000,mean_distance,2.2440586948394774,2.2151072072982787,2.300509648323059,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",2000,mean_distance,1.8880434171358742,1.8224167156219482,1.932749924659729,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",3000,mean_distance,2.351102780501048,2.289643313884735,2.3946327471733095,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",4000,mean_distance,2.888627938826879,2.8226796996593477,2.9523225736618044,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",5000,mean_distance,2.539711852868398,2.465905075073242,2.5939957165718077,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",6000,mean_distance,2.5529728023211162,2.475546350479126,2.655437695980072,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",7000,mean_distance,2.720547289848328,2.652761631011963,2.8173682427406312,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",8000,mean_distance,2.093530028661092,2.0772432386875153,2.1106838274002073,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",9000,mean_distance,3.051120404005051,2.815593719482422,3.2771492528915407,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",10000,mean_distance,2.265685773690542,2.1860071659088134,2.350717694759369,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",1000,mean_distance,2.165371258258819,2.117845046520233,2.234329545497894,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",2000,mean_distance,2.5278466836611426,2.419852991104126,2.6523285412788393,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",3000,mean_distance,1.6664770799875257,1.63969743847847,1.6873762691020966,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",4000,mean_distance,1.5439915929238002,1.4428671860694886,1.5976094615459442,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",5000,mean_distance,2.0233941785494487,1.9754142999649047,2.0594008207321166,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",6000,mean_distance,2.4104066729545592,2.276510412693024,2.51811815738678,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",7000,mean_distance,2.301034553448359,2.2660015738010406,2.3208245706558226,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",8000,mean_distance,1.68122811516126,1.6143607932329178,1.777970689535141,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",9000,mean_distance,1.8183114230632782,1.7147086095809936,1.944251368045807,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",10000,mean_distance,1.5306349420547483,1.4954824525117874,1.5865158474445342,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",1000,mean_distance,1.9453256070613858,1.889925810098648,2.0221294260025022,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",2000,mean_distance,2.8276890540122985,2.541833271980286,3.0409547114372253,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",3000,mean_distance,2.7740502436955765,2.605731039047241,3.058317542076111,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",4000,mean_distance,4.237238696813583,4.193015656471252,4.317970477342605,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",5000,mean_distance,3.052998723189036,2.687903490066528,3.538314301967621,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",6000,mean_distance,1.8532592089722553,1.837670130059123,1.8665061758458614,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",7000,mean_distance,1.8607568304861584,1.8243075662478805,1.8874780064076184,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",8000,mean_distance,1.5269344351192313,1.401077906191349,1.608470930606127,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",9000,mean_distance,1.6681450218893588,1.5761871522478759,1.7270713786780834,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",10000,mean_distance,1.8162567204112807,1.773741237744689,1.851811993457377,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",1000,mean_distance,1.0601342248195618,0.9855480159030241,1.12815857651722,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",2000,mean_distance,1.6309913797418691,1.551921831709998,1.7343547809414748,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",3000,mean_distance,1.8847767015620225,1.8293768629431724,1.9720846230075473,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",4000,mean_distance,2.090113720892783,2.0734332501888275,2.0989750042194273,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",5000,mean_distance,1.7025030672659962,1.5576837995932216,1.7857976180535775,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",6000,mean_distance,2.3019927625214796,2.2253075048327444,2.3802748483770033,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",7000,mean_distance,1.964136342745079,1.6904974411050957,2.2004036977887154,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",8000,mean_distance,1.1507758978252118,1.0680170468077428,1.2413731306791305,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",9000,mean_distance,0.9249011824693826,0.831936739385128,1.0058572681511149,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",10000,mean_distance,0.7760528205887911,0.7181148985285818,0.8418098868411265,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",1000,mean_distance,1.9909393623673282,1.864211057214176,2.0728146070387305,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",2000,mean_distance,2.2111651997279163,2.1564313888549806,2.2669107076667605,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",3000,mean_distance,2.450725065178575,2.3674928237156694,2.522560545977424,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",4000,mean_distance,1.0931565382794013,1.078929769346513,1.1184455497962673,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",5000,mean_distance,1.63055309284939,1.5794090387367068,1.6843521624076656,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",6000,mean_distance,1.4358949056345651,1.3595953926444053,1.5222653178607717,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",7000,mean_distance,1.265033860999089,1.2025991758195365,1.3177162483334541,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",8000,mean_distance,1.6664320586628192,1.5909874027158006,1.8122923853920727,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",9000,mean_distance,1.0089800035399705,0.8520606550169579,1.0966223341872894,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",10000,mean_distance,0.884541702642038,0.8607761550967287,0.9144760182610264,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",1000,mean_distance,1.4504007909943146,1.370552237643752,1.5407189043556773,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",2000,mean_distance,1.3334690180280113,1.3150002494454385,1.356694675627209,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",3000,mean_distance,1.2736747690477346,1.2182207740843296,1.3365616384674521,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",4000,mean_distance,1.2008507229037697,1.1053895375814782,1.2712312738100688,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",5000,mean_distance,1.175740909949836,1.1143346726894379,1.2276301005991495,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",6000,mean_distance,0.921119200950271,0.9044530130922794,0.9361800366923922,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",7000,mean_distance,1.183217322211248,1.1674574166536331,1.200399386294094,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",8000,mean_distance,1.4879549780931027,1.4292775494296377,1.557664981702479,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",9000,mean_distance,1.4906973160895518,1.4689133892576378,1.5092372438486885,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",10000,mean_distance,0.8998444908107469,0.884449549663214,0.9149898794435319,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",1000,mean_distance,2.156678310900212,2.0630205897723926,2.2618012732929653,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",2000,mean_distance,2.4071892852742036,2.3235785587724433,2.572657867409717,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",3000,mean_distance,1.9197895151115152,1.7981108512197221,2.10955088559319,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",4000,mean_distance,2.287934855817572,2.215741135725161,2.336937525693108,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",5000,mean_distance,1.62554789880469,1.4929471159918923,1.8430657559130565,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",6000,mean_distance,1.4429674410296354,1.4052253491738262,1.4769352152023787,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",7000,mean_distance,2.1310320131492926,2.099180621662359,2.1892223796625245,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",8000,mean_distance,2.2083376965692194,2.133830982010539,2.287391805067295,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",9000,mean_distance,1.3417699996427217,1.2502579510211944,1.476626194303944,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",10000,mean_distance,1.395424759677787,1.2784051528291367,1.4698395648350318,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",1000,mean_distance,1.3510070301608585,1.332455996906056,1.371285206741757,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",2000,mean_distance,2.80115149568978,2.679647618029491,3.022963969104261,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",3000,mean_distance,1.2002132363758757,1.1607156428622036,1.244307707462992,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",4000,mean_distance,1.4956148415739952,1.3962455622332042,1.6460633901343948,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",5000,mean_distance,1.3219349881225588,1.3011927095691809,1.3566645290478165,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",6000,mean_distance,1.5384133630871328,1.4963567000978133,1.5819073110818862,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",7000,mean_distance,2.079835817140344,2.043354739745458,2.139460590036436,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",8000,mean_distance,1.6983339119732863,1.6195674628019332,1.7676118121641438,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",9000,mean_distance,1.9487456036438482,1.9046075855043123,1.9866550642511118,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",10000,mean_distance,1.80067870749483,1.74914584841047,1.878106737282218,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",1000,mean_distance,3.9752380494236768,3.6756975230048683,4.1712029910669095,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",2000,mean_distance,2.8748309765132896,2.8356641786439076,2.9402950183454766,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",3000,mean_distance,1.4625065855094712,1.4312589757326173,1.5209174703895336,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",4000,mean_distance,0.6633075145861224,0.6359828020923022,0.6822000236772909,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",5000,mean_distance,1.5773320693628488,0.9453882152257964,2.521081815944629,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",6000,mean_distance,0.6004692080470655,0.5934581240372998,0.6058235643875032,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",7000,mean_distance,0.5584055885537239,0.5155482986642991,0.5855317569669636,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",8000,mean_distance,0.467888146169884,0.43864243385600454,0.4829068260545703,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",9000,mean_distance,0.47272945518680404,0.4684570794078437,0.47668834061307064,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",10000,mean_distance,0.45537626574679363,0.43810076190328057,0.46905440425171574,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action,Augmented (+action buffer),"(10,10)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_10_10,"(10,10)",constant,unseen,Unseen delay,"(10,10)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_15_15,"(15,15)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action,Augmented (+action buffer),"(20,20)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",10000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",1000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",2000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",3000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",4000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",5000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",6000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",7000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",8000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",9000,success,0.0,0.0,0.0,5
+constant,Constant delay,constant_20_20,"(20,20)",constant,unseen,Unseen delay,"(20,20)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-10)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_10,"(0,0-10)",stochastic,unseen,Unseen delay,"(0,0-10)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",10000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",1000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",2000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",3000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",4000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",5000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",6000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",7000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",8000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",9000,success,0.0,0.0,0.0,5
+stochastic,Stochastic observation delay,stochastic_0_20,"(0,0-20)",stochastic,unseen,Unseen delay,"(0,0-20)",10000,success,0.0,0.0,0.0,5

@@ -1,0 +1,91 @@
+metric,env_id,experiment,comparison,variant,variant_label,series,train_delay,eval_delay,x_value,x_label,iqm,q1,q3,n
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0)","(0,0)",0.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,0)","(10,0)",10.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(20,0)","(20,0)",20.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(30,0)","(30,0)",30.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(40,0)","(40,0)",40.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0)","(0,0)",0.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,0)","(10,0)",10.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(20,0)","(20,0)",20.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(30,0)","(30,0)",30.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(40,0)","(40,0)",40.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,unseen,Unseen delay,Unseen delay,"(0,0)","(0,0)",0.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,unseen,Unseen delay,Unseen delay,"(10,0)","(10,0)",10.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,unseen,Unseen delay,Unseen delay,"(20,0)","(20,0)",20.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,unseen,Unseen delay,Unseen delay,"(30,0)","(30,0)",30.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,action_delay_only,unseen,Unseen delay,Unseen delay,"(40,0)","(40,0)",40.0,Action,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0)","(0,0)",0.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,10)","(0,10)",10.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,20)","(0,20)",20.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,30)","(0,30)",30.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,40)","(0,40)",40.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0)","(0,0)",0.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,10)","(0,10)",10.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,20)","(0,20)",20.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,30)","(0,30)",30.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,40)","(0,40)",40.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,unseen,Unseen delay,Unseen delay,"(0,0)","(0,0)",0.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,unseen,Unseen delay,Unseen delay,"(0,10)","(0,10)",10.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,unseen,Unseen delay,Unseen delay,"(0,20)","(0,20)",20.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,unseen,Unseen delay,Unseen delay,"(0,30)","(0,30)",30.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,action_vs_observation,observation_delay_only,unseen,Unseen delay,Unseen delay,"(0,40)","(0,40)",40.0,Observation,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(15,15)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(20,20)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(5,5)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(15,15)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(20,20)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(5,5)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,unseen,Unseen delay,Unseen delay,"(0,0)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,unseen,Unseen delay,Unseen delay,"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,unseen,Unseen delay,Unseen delay,"(15,15)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,unseen,Unseen delay,Unseen delay,"(20,20)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,constant_sweep,constant_delay_length,unseen,Unseen delay,Unseen delay,"(5,5)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(10,10)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(10,10)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,unseen,Unseen delay,Unseen delay,"(10,10)","(0,0)",0.0,"(0,0)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,unseen,Unseen delay,Unseen delay,"(10,10)","(10,10)",10.0,"(10,10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,unseen,Unseen delay,Unseen delay,"(10,10)","(15,15)",15.0,"(15,15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,unseen,Unseen delay,Unseen delay,"(10,10)","(20,20)",20.0,"(20,20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_constant,train_constant_eval_constant,unseen,Unseen delay,Unseen delay,"(10,10)","(5,5)",5.0,"(5,5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-10)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-10)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-10)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-10)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-10)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-10)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,unseen,Unseen delay,Unseen delay,"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,unseen,Unseen delay,Unseen delay,"(0,0-10)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,unseen,Unseen delay,Unseen delay,"(0,0-10)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,generalization_stochastic,train_stochastic_eval_stochastic,unseen,Unseen delay,Unseen delay,"(0,0-10)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_constant,state_info_constant,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(20,20)","(20,20)",0.0,Augmented (+action buffer),-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_constant,state_info_constant,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(20,20)","(20,20)",0.0,Augmented (+action buffer + delay values),-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_constant,state_info_constant,unseen,Unseen delay,Unseen delay,"(20,20)","(20,20)",0.0,Unseen delay,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_stochastic,state_info_stochastic,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-20)","(0,0-20)",0.0,Augmented (+action buffer),-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_stochastic,state_info_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-20)","(0,0-20)",0.0,Augmented (+action buffer + delay values),-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,state_stochastic,state_info_stochastic,unseen,Unseen delay,Unseen delay,"(0,0-20)","(0,0-20)",0.0,Unseen delay,-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-15)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-20)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action,Augmented (+action buffer),Augmented (+action buffer),"(0,0-5)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-15)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-20)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,augmented_action_delay,Augmented (+action buffer + delay values),Augmented (+action buffer + delay values),"(0,0-5)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,unseen,Unseen delay,Unseen delay,"(0,0-10)","(0,0-10)",10.0,"(0,0-10)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,unseen,Unseen delay,Unseen delay,"(0,0-15)","(0,0-15)",15.0,"(0,0-15)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,unseen,Unseen delay,Unseen delay,"(0,0-20)","(0,0-20)",20.0,"(0,0-20)",-50.0,-50.0,-50.0,100
+episode_return,FetchReach-v2,stochastic_sweep,stochastic_observation_upper,unseen,Unseen delay,Unseen delay,"(0,0-5)","(0,0-5)",5.0,"(0,0-5)",-50.0,-50.0,-50.0,100

@@ -2,5 +2,6 @@
     "FetchPush-v1": "operator_models/FetchPush-v2_SAC_seed0",
     "FetchPush-v2": "operator_models/FetchPush-v2_SAC_seed0",
     "FetchSlide-v2": "operator_models/FetchSlide-v2_SAC_seed0",
-    "FetchPickAndPlace-v2": "operator_models/FetchPickAndPlace-v2_SAC_seed0"
+    "FetchPickAndPlace-v2": "operator_models/FetchPickAndPlace-v2_SAC_seed0",
+    "FetchReach-v2": "operator_models/FetchReach-v2_SAC_seed0"
 }

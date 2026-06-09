@@ -1,0 +1,37 @@
+experiment,variant,variant_label,delay_label,x_value,iqm,q1,q3,n
+constant_sweep,unseen,Unseen delay,"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+constant_sweep,augmented_action,Augmented (+action buffer),"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+constant_sweep,unseen,Unseen delay,"(5,5)",5.0,0.8398180254688026,0.826621414808666,0.8495440367390128,200
+constant_sweep,augmented_action,Augmented (+action buffer),"(5,5)",5.0,0.3749475092645695,0.3533146592788398,0.4019741226206808,200
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(5,5)",5.0,0.3749475092645695,0.3533146592788398,0.4019741226206808,200
+constant_sweep,unseen,Unseen delay,"(10,10)",10.0,1.1803916696076828,1.1617245625290606,1.1989292725920677,200
+constant_sweep,augmented_action,Augmented (+action buffer),"(10,10)",10.0,0.4715847904735892,0.4473939421612562,0.49892631124239417,200
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(10,10)",10.0,0.4715847904735892,0.4473939421612562,0.49892631124239417,200
+constant_sweep,unseen,Unseen delay,"(15,15)",15.0,1.8558440046479525,1.8260226994752884,1.889027015315859,200
+constant_sweep,augmented_action,Augmented (+action buffer),"(15,15)",15.0,0.5595658940213142,0.5316162717626676,0.5907289750776008,200
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",15.0,0.5595658940213142,0.5316162717626676,0.5907289750776008,200
+constant_sweep,unseen,Unseen delay,"(20,20)",20.0,2.465439091428558,2.4550820392370225,2.4772462390363215,200
+constant_sweep,augmented_action,Augmented (+action buffer),"(20,20)",20.0,0.6383529827324231,0.6086979535315186,0.6690581902116537,200
+constant_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(20,20)",20.0,0.6383529827324231,0.6086979535315186,0.6690581902116537,200
+stochastic_sweep,unseen,Unseen delay,"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0)",0.0,0.2588307355321121,0.24334516768794856,0.282730388987693,200
+stochastic_sweep,unseen,Unseen delay,"(0,0-5)",5.0,0.2721469362745638,0.25038429804499174,0.2977282758214013,200
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0-5)",5.0,0.26209598200647927,0.24480231316116308,0.28224427178669165,200
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-5)",5.0,0.26274024602745116,0.2457174769719664,0.2823693260304863,200
+stochastic_sweep,unseen,Unseen delay,"(0,0-10)",10.0,0.303837950222944,0.27740542409360197,0.33235498182846396,200
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0-10)",10.0,0.2679690126883902,0.24921041495695423,0.29150291670615414,200
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-10)",10.0,0.26168921640726894,0.24497478722326396,0.2810911858619995,200
+stochastic_sweep,unseen,Unseen delay,"(0,0-15)",15.0,0.337318415092492,0.2968339252779309,0.38594399615147607,200
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0-15)",15.0,0.2687288282551462,0.2505482590792795,0.28986914460958146,200
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-15)",15.0,0.2612103751451113,0.24387851730629737,0.2814986032283515,200
+stochastic_sweep,unseen,Unseen delay,"(0,0-20)",20.0,0.3882999434285822,0.33925307623320516,0.45378463749387643,200
+stochastic_sweep,augmented_action,Augmented (+action buffer),"(0,0-20)",20.0,0.27700332415127277,0.2559186051202653,0.30388825806633657,200
+stochastic_sweep,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",20.0,0.2598946494412967,0.2414691210774934,0.28065992669801154,200
+state_constant,unseen,Unseen delay,"(15,15)",15.0,1.8558440046479525,1.8260226994752884,1.889027015315859,200
+state_constant,augmented_action,Augmented (+action buffer),"(15,15)",15.0,0.5595658940213142,0.5316162717626676,0.5907289750776008,200
+state_constant,augmented_action_delay,Augmented (+action buffer + delay values),"(15,15)",15.0,0.5595658940213142,0.5316162717626676,0.5907289750776008,200
+state_stochastic,unseen,Unseen delay,"(0,0-20)",20.0,0.3882999434285822,0.33925307623320516,0.45378463749387643,200
+state_stochastic,augmented_action,Augmented (+action buffer),"(0,0-20)",20.0,0.27700332415127277,0.2559186051202653,0.30388825806633657,200
+state_stochastic,augmented_action_delay,Augmented (+action buffer + delay values),"(0,0-20)",20.0,0.2598946494412967,0.2414691210774934,0.28065992669801154,200

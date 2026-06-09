@@ -1,0 +1,322 @@
+wandb_version: 1
+
+env_id:
+  desc: null
+  value: FetchSlideDense-v2
+seed:
+  desc: null
+  value: 0
+steps:
+  desc: null
+  value: 1500000
+device:
+  desc: null
+  value: cuda
+gamma:
+  desc: null
+  value: 0.95
+no_her:
+  desc: null
+  value: false
+net_arch:
+  desc: null
+  value:
+  - 512
+  - 512
+  - 512
+ent_coef:
+  desc: null
+  value: auto
+target_entropy:
+  desc: null
+  value: '-2.0'
+optimizer:
+  desc: null
+  value: adam
+weight_decay:
+  desc: null
+  value: 0.0
+batch_size:
+  desc: null
+  value: 256
+buffer_size:
+  desc: null
+  value: 1000000
+learning_rate:
+  desc: null
+  value: 0.0003
+learning_starts:
+  desc: null
+  value: 1000
+checkpoint_freq:
+  desc: null
+  value: 100000
+eval_freq:
+  desc: null
+  value: 10000
+eval_episodes:
+  desc: null
+  value: 20
+output:
+  desc: null
+  value: operator_models/FetchSlide-v2_SAC_seed0_capent.zip
+init_from:
+  desc: null
+  value: null
+wandb:
+  desc: null
+  value: true
+wandb_project:
+  desc: null
+  value: pmdc-fetch-operators
+wandb_entity:
+  desc: null
+  value: null
+wandb_mode:
+  desc: null
+  value: online
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.12
+    cli_version: 0.17.0
+    framework: torch
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1780344882
+    t:
+      1:
+      - 1
+      - 55
+      - 105
+      2:
+      - 1
+      - 55
+      - 105
+      3:
+      - 13
+      - 16
+      - 22
+      - 23
+      - 35
+      4: 3.10.12
+      5: 0.17.0
+      8:
+      - 5
+      13: linux-x86_64
+algo:
+  desc: null
+  value: SAC
+policy_class:
+  desc: null
+  value: <class 'stable_baselines3.sac.policies.MultiInputPolicy'>
+verbose:
+  desc: null
+  value: 1
+policy_kwargs:
+  desc: null
+  value: '{''net_arch'': [512, 512, 512], ''use_sde'': False}'
+num_timesteps:
+  desc: null
+  value: 0
+_total_timesteps:
+  desc: null
+  value: 1500000
+_num_timesteps_at_start:
+  desc: null
+  value: 0
+action_noise:
+  desc: null
+  value: None
+start_time:
+  desc: null
+  value: 1780344887378320415
+tensorboard_log:
+  desc: null
+  value: operator_models/FetchSlide-v2_SAC_seed0_capent_run/tb
+_last_obs:
+  desc: null
+  value: "OrderedDict([('achieved_goal', array([[1.08313431, 0.81207658, 0.41402256]])),\
+    \ ('desired_goal', array([[1.09776293, 0.96334843, 0.41401894]])), ('observation',\
+    \ array([[ 9.96056349e-01,  7.48908387e-01,  4.12666572e-01,\n         1.08313431e+00,\
+    \  8.12076578e-01,  4.14022562e-01,\n         8.70779651e-02,  6.31681910e-02,\
+    \  1.35598971e-03,\n        -2.03562423e-06,  1.47158977e-03, -5.32964269e-03,\n\
+    \         1.24548654e-04, -1.88202238e-02,  1.22698261e-03,\n        -5.56736934e-05,\
+    \  6.43864204e-05,  1.86450993e-02,\n        -4.64845340e-04, -4.83036131e-03,\
+    \ -1.26969656e-03,\n         5.03838696e-05,  7.97511346e-06,  4.66194862e-07,\n\
+    \         5.49241789e-05]]))])"
+_last_episode_starts:
+  desc: null
+  value: '[ True]'
+_last_original_obs:
+  desc: null
+  value: None
+_episode_num:
+  desc: null
+  value: 0
+use_sde:
+  desc: null
+  value: 'False'
+sde_sample_freq:
+  desc: null
+  value: -1
+_current_progress_remaining:
+  desc: null
+  value: 1.0
+_stats_window_size:
+  desc: null
+  value: 100
+ep_info_buffer:
+  desc: null
+  value: deque([], maxlen=100)
+ep_success_buffer:
+  desc: null
+  value: deque([], maxlen=100)
+_n_updates:
+  desc: null
+  value: 0
+_custom_logger:
+  desc: null
+  value: 'False'
+env:
+  desc: null
+  value: <stable_baselines3.common.vec_env.dummy_vec_env.DummyVecEnv object at 0x7e951377c940>
+_vec_normalize_env:
+  desc: null
+  value: None
+observation_space:
+  desc: null
+  value: 'Dict(''achieved_goal'': Box(-inf, inf, (3,), float64), ''desired_goal'':
+    Box(-inf, inf, (3,), float64), ''observation'': Box(-inf, inf, (25,), float64))'
+action_space:
+  desc: null
+  value: Box(-1.0, 1.0, (4,), float32)
+n_envs:
+  desc: null
+  value: 1
+tau:
+  desc: null
+  value: 0.005
+gradient_steps:
+  desc: null
+  value: 1
+optimize_memory_usage:
+  desc: null
+  value: 'False'
+replay_buffer:
+  desc: null
+  value: <stable_baselines3.her.her_replay_buffer.HerReplayBuffer object at 0x7e951377ca30>
+replay_buffer_class:
+  desc: null
+  value: <class 'stable_baselines3.her.her_replay_buffer.HerReplayBuffer'>
+replay_buffer_kwargs:
+  desc: null
+  value: '{''n_sampled_goal'': 4, ''goal_selection_strategy'': ''future''}'
+_episode_storage:
+  desc: null
+  value: None
+train_freq:
+  desc: null
+  value: 'TrainFreq(frequency=1, unit=<TrainFrequencyUnit.STEP: ''step''>)'
+use_sde_at_warmup:
+  desc: null
+  value: 'False'
+log_ent_coef:
+  desc: null
+  value: tensor([0.], device='cuda:0', requires_grad=True)
+target_update_interval:
+  desc: null
+  value: 1
+ent_coef_optimizer:
+  desc: null
+  value: "Adam (\nParameter Group 0\n    amsgrad: False\n    betas: (0.9, 0.999)\n\
+    \    capturable: False\n    differentiable: False\n    eps: 1e-08\n    foreach:\
+    \ None\n    fused: None\n    lr: 0.0003\n    maximize: False\n    weight_decay:\
+    \ 0\n)"
+lr_schedule:
+  desc: null
+  value: <function get_schedule_fn.<locals>.<lambda> at 0x7e951377b370>
+policy:
+  desc: null
+  value: "MultiInputPolicy(\n  (actor): Actor(\n    (features_extractor): CombinedExtractor(\n\
+    \      (extractors): ModuleDict(\n        (achieved_goal): Flatten(start_dim=1,\
+    \ end_dim=-1)\n        (desired_goal): Flatten(start_dim=1, end_dim=-1)\n    \
+    \    (observation): Flatten(start_dim=1, end_dim=-1)\n      )\n    )\n    (latent_pi):\
+    \ Sequential(\n      (0): Linear(in_features=31, out_features=512, bias=True)\n\
+    \      (1): ReLU()\n      (2): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (3): ReLU()\n      (4): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (5): ReLU()\n    )\n    (mu): Linear(in_features=512, out_features=4, bias=True)\n\
+    \    (log_std): Linear(in_features=512, out_features=4, bias=True)\n  )\n  (critic):\
+    \ ContinuousCritic(\n    (features_extractor): CombinedExtractor(\n      (extractors):\
+    \ ModuleDict(\n        (achieved_goal): Flatten(start_dim=1, end_dim=-1)\n   \
+    \     (desired_goal): Flatten(start_dim=1, end_dim=-1)\n        (observation):\
+    \ Flatten(start_dim=1, end_dim=-1)\n      )\n    )\n    (qf0): Sequential(\n \
+    \     (0): Linear(in_features=35, out_features=512, bias=True)\n      (1): ReLU()\n\
+    \      (2): Linear(in_features=512, out_features=512, bias=True)\n      (3): ReLU()\n\
+    \      (4): Linear(in_features=512, out_features=512, bias=True)\n      (5): ReLU()\n\
+    \      (6): Linear(in_features=512, out_features=1, bias=True)\n    )\n    (qf1):\
+    \ Sequential(\n      (0): Linear(in_features=35, out_features=512, bias=True)\n\
+    \      (1): ReLU()\n      (2): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (3): ReLU()\n      (4): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (5): ReLU()\n      (6): Linear(in_features=512, out_features=1, bias=True)\n\
+    \    )\n  )\n  (critic_target): ContinuousCritic(\n    (features_extractor): CombinedExtractor(\n\
+    \      (extractors): ModuleDict(\n        (achieved_goal): Flatten(start_dim=1,\
+    \ end_dim=-1)\n        (desired_goal): Flatten(start_dim=1, end_dim=-1)\n    \
+    \    (observation): Flatten(start_dim=1, end_dim=-1)\n      )\n    )\n    (qf0):\
+    \ Sequential(\n      (0): Linear(in_features=35, out_features=512, bias=True)\n\
+    \      (1): ReLU()\n      (2): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (3): ReLU()\n      (4): Linear(in_features=512, out_features=512, bias=True)\n\
+    \      (5): ReLU()\n      (6): Linear(in_features=512, out_features=1, bias=True)\n\
+    \    )\n    (qf1): Sequential(\n      (0): Linear(in_features=35, out_features=512,\
+    \ bias=True)\n      (1): ReLU()\n      (2): Linear(in_features=512, out_features=512,\
+    \ bias=True)\n      (3): ReLU()\n      (4): Linear(in_features=512, out_features=512,\
+    \ bias=True)\n      (5): ReLU()\n      (6): Linear(in_features=512, out_features=1,\
+    \ bias=True)\n    )\n  )\n)"
+actor:
+  desc: null
+  value: "Actor(\n  (features_extractor): CombinedExtractor(\n    (extractors): ModuleDict(\n\
+    \      (achieved_goal): Flatten(start_dim=1, end_dim=-1)\n      (desired_goal):\
+    \ Flatten(start_dim=1, end_dim=-1)\n      (observation): Flatten(start_dim=1,\
+    \ end_dim=-1)\n    )\n  )\n  (latent_pi): Sequential(\n    (0): Linear(in_features=31,\
+    \ out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (3): ReLU()\n    (4): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (5): ReLU()\n  )\n  (mu): Linear(in_features=512,\
+    \ out_features=4, bias=True)\n  (log_std): Linear(in_features=512, out_features=4,\
+    \ bias=True)\n)"
+critic:
+  desc: null
+  value: "ContinuousCritic(\n  (features_extractor): CombinedExtractor(\n    (extractors):\
+    \ ModuleDict(\n      (achieved_goal): Flatten(start_dim=1, end_dim=-1)\n     \
+    \ (desired_goal): Flatten(start_dim=1, end_dim=-1)\n      (observation): Flatten(start_dim=1,\
+    \ end_dim=-1)\n    )\n  )\n  (qf0): Sequential(\n    (0): Linear(in_features=35,\
+    \ out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (3): ReLU()\n    (4): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (5): ReLU()\n    (6): Linear(in_features=512,\
+    \ out_features=1, bias=True)\n  )\n  (qf1): Sequential(\n    (0): Linear(in_features=35,\
+    \ out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (3): ReLU()\n    (4): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (5): ReLU()\n    (6): Linear(in_features=512,\
+    \ out_features=1, bias=True)\n  )\n)"
+critic_target:
+  desc: null
+  value: "ContinuousCritic(\n  (features_extractor): CombinedExtractor(\n    (extractors):\
+    \ ModuleDict(\n      (achieved_goal): Flatten(start_dim=1, end_dim=-1)\n     \
+    \ (desired_goal): Flatten(start_dim=1, end_dim=-1)\n      (observation): Flatten(start_dim=1,\
+    \ end_dim=-1)\n    )\n  )\n  (qf0): Sequential(\n    (0): Linear(in_features=35,\
+    \ out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (3): ReLU()\n    (4): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (5): ReLU()\n    (6): Linear(in_features=512,\
+    \ out_features=1, bias=True)\n  )\n  (qf1): Sequential(\n    (0): Linear(in_features=35,\
+    \ out_features=512, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (3): ReLU()\n    (4): Linear(in_features=512,\
+    \ out_features=512, bias=True)\n    (5): ReLU()\n    (6): Linear(in_features=512,\
+    \ out_features=1, bias=True)\n  )\n)"
+batch_norm_stats:
+  desc: null
+  value: '[]'
+batch_norm_stats_target:
+  desc: null
+  value: '[]'
+_logger:
+  desc: null
+  value: <stable_baselines3.common.logger.Logger object at 0x7e94d0f85780>

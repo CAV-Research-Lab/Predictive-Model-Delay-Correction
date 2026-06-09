@@ -1,0 +1,134 @@
+{
+    "os": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2026-06-01T20:14:43.458640",
+    "startedAt": "2026-06-01T20:14:42.619669",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--env-id",
+        "FetchSlideDense-v2",
+        "--steps",
+        "1500000",
+        "--seed",
+        "0",
+        "--device",
+        "cuda",
+        "--gamma",
+        "0.95",
+        "--net-arch",
+        "512",
+        "512",
+        "512",
+        "--target-entropy",
+        "-2.0",
+        "--buffer-size",
+        "1000000",
+        "--wandb",
+        "--wandb-project",
+        "pmdc-fetch-operators",
+        "--wandb-mode",
+        "online",
+        "--output",
+        "operator_models/FetchSlide-v2_SAC_seed0_capent.zip"
+    ],
+    "state": "running",
+    "program": "/home/dook/PhD-thesis/code/time-delay/Predictive-Model-Delay-Correction/train_operator.py",
+    "codePathLocal": "train_operator.py",
+    "codePath": "train_operator.py",
+    "git": {
+        "remote": "https://github.com/CAV-Research-Lab/Predictive-Model-Delay-Correction.git",
+        "commit": "472b176a987c9e8214faba8a5da3939a50d46056"
+    },
+    "email": "lucmccutcheon.home@gmail.com",
+    "root": "/home/dook/PhD-thesis/code/time-delay/Predictive-Model-Delay-Correction",
+    "host": "DESKTOP-MPAPUU0",
+    "username": "dook",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3299.9970000000008,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 3299.997,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 1006.853931427002,
+            "used": 140.55738830566406
+        }
+    },
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3080",
+            "memory_total": 10737418240
+        }
+    ],
+    "memory": {
+        "total": 15.618247985839844
+    }
+}

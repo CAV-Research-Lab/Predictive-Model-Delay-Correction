@@ -51,11 +51,16 @@ TASK="${SLURM_ARRAY_TASK_ID:-0}"
 METHOD_IDX=$(( TASK / SEEDS_PER_METHOD ))
 SEED=$(( TASK % SEEDS_PER_METHOD ))
 
-# Method dispatch: 0=ABSP 1=SBSP 2=A-SAC 3=SAC. PMDC runs carry the tuned config (E4 best).
+# Method dispatch: 0=ABSP 1=SBSP 2=A-SAC 3=SAC.
+# PMDC runs use the W4 FAIR config (PMDC-side improvements only; SAC kept at the same
+# defaults as the A-SAC/SAC baselines -- see PMDC_TUNING_LOG.md). The old SAC-side tweaks
+# (gamma 0.95, tent -1) are deliberately NOT used. PMDC_SAVE_WM persists the (policy, WM)
+# pair for valid offline / on-distribution diagnostics.
+W4_CFG=(PMDC_FIX_PREVOBS=1 PMDC_WM_NORM=1 PMDC_WM_LR=1e-3 PMDC_CLIP_STATE=10 PMDC_WM_DELTA=1 PMDC_WM_WARMUP=10000 PMDC_SAVE_WM=1)
 PMDC_ENV=()
 case "$METHOD_IDX" in
-  0) ALGO=PMDC;  OUTDIR="${OUT_BASE}_absp"; PMDC_ENV=(PMDC_PRED_MODE=absp PMDC_FIX_PREVOBS=1 PMDC_SAC_GAMMA=0.95 PMDC_SAC_TENT=-1) ;;
-  1) ALGO=PMDC;  OUTDIR="${OUT_BASE}";      PMDC_ENV=(PMDC_PRED_MODE=sbsp PMDC_FIX_PREVOBS=1 PMDC_SAC_GAMMA=0.95 PMDC_SAC_TENT=-1) ;;
+  0) ALGO=PMDC;  OUTDIR="${OUT_BASE}_absp"; PMDC_ENV=(PMDC_PRED_MODE=absp "${W4_CFG[@]}") ;;
+  1) ALGO=PMDC;  OUTDIR="${OUT_BASE}";      PMDC_ENV=(PMDC_PRED_MODE=sbsp "${W4_CFG[@]}") ;;
   2) ALGO=A-SAC; OUTDIR="${OUT_BASE}";      PMDC_ENV=() ;;
   3) ALGO=SAC;   OUTDIR="${OUT_BASE}";      PMDC_ENV=() ;;
   *) echo "bad METHOD_IDX $METHOD_IDX (task $TASK, SEEDS_PER_METHOD $SEEDS_PER_METHOD)" >&2; exit 2 ;;

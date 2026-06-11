@@ -34,7 +34,27 @@ class PMDC(gym.Wrapper):
         # PMDC_TRAIN_EVERY=K -> also train the world model every K env steps (0 = only once/episode).
         # PMDC_FIX_PREVOBS=1 -> update prev_obs each step so (state, action, next_state) pairs are valid.
         self.train_every = int(os.environ.get("PMDC_TRAIN_EVERY", "0"))
+        # PMDC_WM_WARMUP=N -> train the WM every 2 steps for the FIRST N env steps only, then
+        # fall back to the default once-per-episode cadence. Goal: the WM (and so the reward
+        # function) converges BEFORE learning_starts, so SAC's first updates see a stationary
+        # reward. Distinct from PMDC_TRAIN_EVERY (continuous dense updates, which hurt -- F2).
+        self.wm_warmup = int(os.environ.get("PMDC_WM_WARMUP", "0"))
         self.fix_prev_obs = os.environ.get("PMDC_FIX_PREVOBS", "0") == "1"
+        # PMDC_WM_NORM=1 -> z-score the world-model inputs. The PD-gain action (+-80) is ~50x the
+        # state scale and swamps the net; normalising it makes the WM ~3x more accurate at the
+        # deployment training budget (see wm_hparam_ablation.py). Default off (non-breaking).
+        self.wm_norm = os.environ.get("PMDC_WM_NORM", "0") == "1"
+        # PMDC_RECAL_GROWTH=lambda -> horizon-scaled SBSP recalibration: the buffered prediction
+        # i+1 steps ahead is patched by difference*(1 + lambda*(i+1)) instead of the constant
+        # difference. Targets F8: the constant-drift patch UNDER-corrects when prediction error
+        # grows over the horizon (off-distribution optimism). 0 (default) = original behaviour.
+        self.recal_growth = float(os.environ.get("PMDC_RECAL_GROWTH", "0"))
+        # PMDC_CLIP_STATE=X -> clip every predicted state to [-X, X] and replace NaN/inf.
+        # The workspace obs are O(1), so X=10 never binds in normal operation; it only stops
+        # the untrained ensemble's iterated alpha-step rollouts from exploding (a rare but real
+        # original-code behaviour: those states reach SAC's replay buffer as observations and
+        # can NaN the first SAC updates at learning_starts). 0 (default) = original behaviour.
+        self.clip_state = float(os.environ.get("PMDC_CLIP_STATE", "0"))
         self._step_i = 0
         self.wm_loss = 0.0       # mean ensemble Huber loss at the last world-model update
         self.wm_pred_err = 0.0   # delay-horizon prediction error ||obs - predicted|| each step
@@ -67,8 +87,6 @@ class PMDC(gym.Wrapper):
         if wm_lr:
             params["beta"] = float(wm_lr)  # override world-model (ensemble) learning rate
         self.dc_models = [DCNN(**params).eval() for _ in range(n_models)]
-        for model in self.dc_models:
-            model.learning_rate = np.random.randint(-100, 100) / 1_200_000
         n_layers = str(params["n_layers"])
         layer_size = str(params["layer_size"])
 
@@ -112,6 +130,12 @@ class PMDC(gym.Wrapper):
         self.action_buffer = deque([zero_act.copy() for _ in range(self.delay)], maxlen=self.delay)
 
         self.future_state = self.initial_undelay(obs)
+        if self.fix_prev_obs:
+            # initial_undelay overwrites prev_obs with PREDICTED states (the F1 bug's reset-time
+            # remnant). Before the ensemble is trained those alpha-step rollouts can explode
+            # (~1e16), poisoning the episode's first replay pair -- and with PMDC_WM_NORM=1 the
+            # z-score stats. The first pair must use the TRUE reset observation.
+            self.prev_obs = obs
 
         if len(self.replay_buffer) > self.start_training and not (self.freeze_wm and self._step_i >= self.freeze_wm):
             self.learn()
@@ -131,7 +155,10 @@ class PMDC(gym.Wrapper):
         self.replay_buffer.append(training_data)
 
         self._step_i += 1
-        if self.train_every and len(self.replay_buffer) > self.start_training and self._step_i % self.train_every == 0:
+        _te = self.train_every
+        if self.wm_warmup and self._step_i < self.wm_warmup:
+            _te = 2  # dense warmup cadence (see PMDC_WM_WARMUP)
+        if _te and len(self.replay_buffer) > self.start_training and self._step_i % _te == 0:
             self.learn()
         if self.fix_prev_obs:
             self.prev_obs = observation
@@ -146,7 +173,7 @@ class PMDC(gym.Wrapper):
             predictions = None
             for past_action in self.action_buffer:  # oldest -> newest == alpha forward steps
                 predictions = np.array([model.predict(state, past_action) for model in self.dc_models])
-                state = predictions.mean(axis=0)
+                state = self._sane(predictions.mean(axis=0))
             self.future_state = state
             # ensemble spread at the final (alpha-ahead) rollout step, reward-relevant dims
             if predictions is not None:
@@ -157,7 +184,7 @@ class PMDC(gym.Wrapper):
             self.recalibrate(observation)
 
             predictions = np.array([model.predict(self.future_state, action) for model in self.dc_models])
-            self.future_state = predictions.mean(axis=0)
+            self.future_state = self._sane(predictions.mean(axis=0))
             # 1-step ensemble spread on the reward-relevant dims (EE pos [0:3] + operator pos [11:14])
             self.wm_disagreement = float(predictions[:, [0, 1, 2, 11, 12, 13]].std(axis=0).mean())
 
@@ -187,7 +214,7 @@ class PMDC(gym.Wrapper):
                 predictions.append(model.predict(observation, action))
                 if members is not None:
                     members[i] = model.predict(members[i], action)
-            observation = np.mean(predictions, axis=0)
+            observation = self._sane(np.mean(predictions, axis=0))
 
             self.future_state_buffer.append(observation)
 
@@ -201,6 +228,20 @@ class PMDC(gym.Wrapper):
 
         obs = np.array([item for item in obs])
         obs_ = np.array([item for item in obs_])
+
+        if self.wm_norm:
+            # z-score stats from the whole replay buffer; set on each ensemble member's device.
+            # float64 accumulation: the +-80 action dim overflows float32 variance on outliers.
+            # std FLOOR 1e-2 (not +1e-6): near-constant obs dims (e.g. resting-puck rotations)
+            # otherwise divide the ITERATED rollout's own output noise by ~1e-6, amplifying
+            # 1e6x per rollout step -> inf within 3 of the alpha=24 steps (the 2026-06-09 W1
+            # NaN crash). One forward pass on real data never sees this; the closed loop does.
+            all_x = np.array([item[0] for item in self.replay_buffer], dtype=np.float64)
+            in_mean = torch.tensor(all_x.mean(axis=0), dtype=torch.float32)
+            in_std = torch.tensor(np.maximum(all_x.std(axis=0), 1e-2), dtype=torch.float32)
+            for model in self.dc_models:
+                model.in_mean = in_mean.to(model.device)
+                model.in_std = in_std.to(model.device)
 
         losses = []
         for model in self.dc_models:
@@ -229,12 +270,27 @@ class PMDC(gym.Wrapper):
 
         x = np.array(self.future_state_buffer)
         for i in range(len(x)):
-            x[i] += difference
+            # entry i is the prediction i+1 steps ahead; recal_growth=0 -> constant-drift (original)
+            x[i] += difference * (1.0 + self.recal_growth * (i + 1))
 
         self.future_state_buffer = deque(x)
-        self.future_state += difference
+        # future_state duplicates the deepest buffer entry -> same scale keeps them consistent.
+        # REBIND, do not `+=`: the emitted observation is this very ndarray, and the outer
+        # delay wrapper still holds it (by reference) in past_observations awaiting delayed
+        # delivery -- an in-place update retroactively mutates observations already "sent"
+        # (original-code aliasing bug, found 2026-06-09).
+        self.future_state = self._sane(self.future_state + difference * (1.0 + self.recal_growth * len(x)))
         if self.member_states is not None:
-            self.member_states = self.member_states + difference  # common shift keeps members reality-centred
+            # common shift keeps members reality-centred
+            self.member_states = self.member_states + difference * (1.0 + self.recal_growth * len(x))
+
+    def _sane(self, state):
+        """Bound a predicted state to the (generous) workspace box; see PMDC_CLIP_STATE."""
+        if self.clip_state:
+            return np.clip(np.nan_to_num(state, nan=0.0, posinf=self.clip_state,
+                                         neginf=-self.clip_state),
+                           -self.clip_state, self.clip_state)
+        return state
 
     def calculate_reward(self, obs):
         reward = -np.linalg.norm(obs[[0, 1, 2]] - obs[[11, 12, 13]])

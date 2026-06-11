@@ -183,6 +183,24 @@ def make_env(env_id, seed=None, operator_model=None):
     return env
 
 
+class _ScaleActionHistory(gym.ObservationWrapper):
+    """Divide the action-history dims of PMDC's augmented observation by the action bound so
+    the SAC networks see O(1) inputs. The raw PD-gain history is +-80 vs O(1) state dims --
+    the same scale pathology that degraded the world model (wm_hparam_ablation). This is a
+    PMDC-side interface choice (gated by PMDC_OBS_ACTSCALE); the A-SAC/SAC baselines keep
+    their published observation untouched."""
+
+    def __init__(self, env, state_dim, scale):
+        super().__init__(env)
+        self.state_dim = state_dim
+        self.scale = float(scale)
+
+    def observation(self, observation):
+        out = np.asarray(observation, dtype=np.float32).copy()
+        out[self.state_dim:] /= self.scale
+        return out
+
+
 def augmented_delay_v(env, obs_delay_range, act_delay_range):
     obs_dim = env.observation_space.shape[0]
     action_dim = env.action_space.shape[0]
@@ -225,12 +243,18 @@ def build_training_env(algorithm, env_id, delay_config, seed, n_models, pretrain
         )
         obs_only_delay_range = range(0, delay_config.obs_delay_range.stop)
         delay_v = augmented_delay_v(corrected_env, obs_only_delay_range, range(0, 1))
-        return AugmentedRandomDelayWrapper(
+        aug_env = AugmentedRandomDelayWrapper(
             corrected_env,
             obs_delay_range=obs_only_delay_range,
             act_delay_range=range(0, 1),
             delay_v=delay_v,
         )
+        act_scale = float(os.environ.get("PMDC_OBS_ACTSCALE", "0"))
+        if act_scale:
+            aug_env = _ScaleActionHistory(
+                aug_env, state_dim=corrected_env.observation_space.shape[0], scale=act_scale
+            )
+        return aug_env
 
     raise ValueError(f"Unknown algorithm: {algorithm}")
 
@@ -292,6 +316,33 @@ def train(
         callback = CallbackList([callback, WandbCallback(verbose=0)])
     model.learn(total_timesteps=steps, log_interval=1, callback=callback)
     model.save(str(model_path))
+    # Persist the online-trained world model next to the policy zip (Pitfall E fix) so a
+    # matched (policy, WM) pair can be reloaded for valid on-distribution diagnostics.
+    # Gated by env var OR sentinel file (the file form reaches already-queued driver jobs).
+    if algorithm == "PMDC" and (os.environ.get("PMDC_SAVE_WM", "0") == "1"
+                                or Path("PMDC_SAVE_WM").exists()):
+        e, pmdc_w = env, None
+        while e is not None:
+            if isinstance(e, PMDC):
+                pmdc_w = e
+                break
+            e = getattr(e, "env", None)
+        if pmdc_w is not None:
+            import pickle as _pkl
+            wm_dir = model_dir / "wm"
+            wm_dir.mkdir(parents=True, exist_ok=True)
+            for i, m in enumerate(pmdc_w.dc_models):
+                torch.save(m.state_dict(), wm_dir / f"sd_{i}.pt")
+            m0 = pmdc_w.dc_models[0]
+            stats = {}
+            if m0.in_mean is not None:
+                stats = {"in_mean": m0.in_mean.cpu().numpy(), "in_std": m0.in_std.cpu().numpy()}
+            np.savez(wm_dir / "stats.npz", **stats)
+            _pkl.dump({"beta": float(m0.learning_rate), "input_dims": m0.input_dims,
+                       "n_actions": m0.n_actions, "layer_size": m0.layer_size,
+                       "n_layers": m0.n_layers},
+                      open(wm_dir / "params.pickle", "wb"))
+            print(f"[wm] persisted ensemble -> {wm_dir}")
     env.close()
     if wandb_run is not None:
         wandb_run.finish()

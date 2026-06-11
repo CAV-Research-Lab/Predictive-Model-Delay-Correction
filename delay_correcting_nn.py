@@ -58,8 +58,18 @@ class DCNN(nn.Module):
             self.device = torch.device("cpu")
 
         self.to(self.device)
+        # Optional input normalization, set by PMDC when PMDC_WM_NORM=1. Plain attributes (not
+        # registered buffers) so they stay out of state_dict -> existing checkpoints still load.
+        self.in_mean: "torch.Tensor | None" = None
+        self.in_std: "torch.Tensor | None" = None
+        # PMDC_WM_DELTA=1 -> the net predicts the state CHANGE (s_{t+1} - s_t) instead of the
+        # absolute next state (standard dynamics-model parameterisation; the identity part of
+        # the map comes for free). Deltas are computed on RAW states (before input norm).
+        self.predict_delta = os.environ.get("PMDC_WM_DELTA", "0") == "1"
 
     def forward(self, x):
+        if self.in_mean is not None:
+            x = (x - self.in_mean) / self.in_std
         x = self.fc1(x)
         x = F.relu(x)
         if self.n_layers > 1:
@@ -79,7 +89,11 @@ class DCNN(nn.Module):
         prediction = self.forward(t_obs)
 
         self.optimizer.zero_grad()
-        loss = F.huber_loss(prediction, t_obs_)
+        if self.predict_delta:
+            target = (t_obs_ - t_obs[:, : self.input_dims]).detach()
+        else:
+            target = t_obs_
+        loss = F.huber_loss(prediction, target)
 
         loss.backward()
         self.optimizer.step()
@@ -93,6 +107,8 @@ class DCNN(nn.Module):
         t_obs_ = torch.tensor(obs_, requires_grad=True, dtype=torch.float32).to(self.device)
 
         prediction = self.forward(t_obs)
+        if self.predict_delta:
+            t_obs_ = (t_obs_ - t_obs[:, : self.input_dims]).detach()
         loss = F.mse_loss(prediction, t_obs_)
         return loss.cpu().detach().item()
 
@@ -101,6 +117,8 @@ class DCNN(nn.Module):
         with torch.no_grad():
             aug_obs = torch.tensor(np.append(obs, action), device=self.device, dtype=torch.float32)
             pred = self.forward(aug_obs)
+            if self.predict_delta:
+                pred = pred + aug_obs[: self.input_dims]
         return pred.cpu().detach().numpy()
 
 def get_dataset(path):
